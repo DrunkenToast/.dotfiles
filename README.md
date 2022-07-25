@@ -1,5 +1,6 @@
 # Dotfiles
 
+```
  ██████████             █████       ██████   ███  ████                  
 ░░███░░░░███           ░░███       ███░░███ ░░░  ░░███                  
  ░███   ░░███  ██████  ███████    ░███ ░░░  ████  ░███   ██████   █████ 
@@ -8,20 +9,23 @@
  ░███    ███ ░███ ░███  ░███ ███  ░███      ░███  ░███ ░███░░░   ░░░░███
  ██████████  ░░██████   ░░█████   █████     █████ █████░░██████  ██████ 
 ░░░░░░░░░░    ░░░░░░     ░░░░░   ░░░░░     ░░░░░ ░░░░░  ░░░░░░  ░░░░░░  
+```
 
 ## Deploy dotfiles
 
 ### Clone repo
 
-```bash
+```
 cd ~
-git clone <repo>
+git clone https://github.com/DrunkenToast/.dotfiles.git
 ```
 
 ### Stowing
 
 - `stow */` all packages
 - `stow neovim` only neovim
+
+### Stow conflicts
 
 This error might appear if a file from a package already exists:
 ```
@@ -32,7 +36,7 @@ E.g.: .bashrc from bash already exists in home dir.
 
 A solution* to this is:
 
-```bash
+```
 stow --adopt bar
 git restore .
 ```
