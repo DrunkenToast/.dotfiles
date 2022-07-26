@@ -49,4 +49,4 @@ _tmux_complete_session() {
   local cur=${COMP_WORDS[COMP_CWORD]}
   COMPREPLY=( ${COMPREPLY[@]:-} $(compgen -W "$(tmux -q list-sessions | cut -f 1 -d ':')" -- "${cur}") )
 }
-complete -F _tmux_complete_session tm
+complete -F _tmux_complete_session ts
