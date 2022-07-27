@@ -104,4 +104,4 @@ require'lspconfig'.sumneko_lua.setup(config({
     },
   },
 }))
-
+require('lspconfig').bashls.setup(config())
