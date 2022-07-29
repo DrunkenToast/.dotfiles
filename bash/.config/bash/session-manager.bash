@@ -9,16 +9,16 @@ pp() {
     )
 
     local FOLDER=$(
-    echo "${FOLDERS}" | fzf --preview "
-        onefetch '${PROJECTS}{}' 2>/dev/null;
-        exa -l '${PROJECTS}{}';
-        bat --color always '${PROJECTS}{}/README.md' 2>/dev/null
-    "
-)
+        echo "${FOLDERS}" | fzf --preview "
+            onefetch '${PROJECTS}{}' 2>/dev/null;
+            exa -l '${PROJECTS}{}';
+            bat --color always '${PROJECTS}{}/README.md' 2>/dev/null
+        "
+    )
 
-if [ $? -eq 0 ]; then
-    cd "${PROJECTS}/${FOLDER}"
-fi
+    if [ $? -eq 0 ]; then
+        cd "${PROJECTS}/${FOLDER}"
+    fi
 }
 
 pps() {

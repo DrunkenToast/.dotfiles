@@ -29,3 +29,12 @@ alias lrt='ls -1Ft modified -s modified'    #'ls -1Fcrt'
 
 alias gcd='cd "$(git rev-parse --show-toplevel)"'
 
+fkill() {
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+    if [ "x$pid" != "x" ]; then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
