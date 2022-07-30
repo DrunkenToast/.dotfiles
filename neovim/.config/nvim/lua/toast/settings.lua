@@ -2,7 +2,6 @@ local opt = vim.opt
 
 -- Theme
 opt.termguicolors = true
-vim.cmd("colorscheme gruvbox") --Move after plugins
 
 -- General
 opt.compatible = false
