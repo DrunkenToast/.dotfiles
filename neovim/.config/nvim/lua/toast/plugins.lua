@@ -52,6 +52,15 @@ return require('packer').startup(function(use)
     -- Discord
     use 'andweeb/presence.nvim'
 
+    -- File explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
     use "hrsh7th/cmp-nvim-lsp"
