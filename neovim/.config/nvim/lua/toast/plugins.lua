@@ -39,11 +39,14 @@ return require('packer').startup(function(use)
 
     -- Misc
     use 'norcalli/nvim-colorizer.lua'
+    use {
+        'goolord/alpha-nvim',
+    }
 
     -- Status line
     use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
     -- Discord
@@ -63,10 +66,10 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-nvim-lsp-signature-help"
 
     use({
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      config = function()
-        require("lsp_lines").setup()
-      end,
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
     })
 
     -- Snippets
@@ -80,8 +83,8 @@ return require('packer').startup(function(use)
 
     --use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
-      'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim',
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- Treesitter
@@ -102,18 +105,19 @@ return require('packer').startup(function(use)
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {
-            check_ts = true,
-        } end
+                check_ts = true,
+            }
+        end
     }
     --use "windwp/nvim-autopairs"
 
     -- git
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use {
-      'lewis6991/gitsigns.nvim',
-      config = function()
-        require('gitsigns').setup()
-      end
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
     }
     use "tpope/vim-fugitive"
     --use "saadparwaiz1/cmp_luasnip" -- snippet completions
