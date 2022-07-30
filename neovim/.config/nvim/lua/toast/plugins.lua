@@ -61,9 +61,10 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
     use "onsails/lspkind-nvim"
     use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
 
     use({
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
