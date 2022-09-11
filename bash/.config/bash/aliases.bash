@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# doas
-complete -cf doas
-alias sudo='doas'
-
 # nvidia
 complete -cf prime-run
 
