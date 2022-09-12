@@ -8,7 +8,6 @@
 PS1='[\u@\h \W]\$ '
 
 source /usr/share/nvm/init-nvm.sh
-. "$HOME/.cargo/env"
 
 # Source all cfgs
 BASH_CFG="~/.config/bash"
