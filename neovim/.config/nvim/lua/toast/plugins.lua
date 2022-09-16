@@ -35,10 +35,12 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Themes
-    use 'gruvbox-community/gruvbox'
+    -- use 'gruvbox-community/gruvbox'
+    use { "ellisonleao/gruvbox.nvim" }
+    use "rebelot/kanagawa.nvim"
 
     -- Misc
-    use 'norcalli/nvim-colorizer.lua'
+    use 'NvChad/nvim-colorizer.lua'
     use {
         'goolord/alpha-nvim',
     }
@@ -46,7 +48,7 @@ return require('packer').startup(function(use)
     -- Status line
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons' }
     }
 
     -- Discord
@@ -54,11 +56,13 @@ return require('packer').startup(function(use)
 
     -- File explorer
     use {
-        'kyazdani42/nvim-tree.lua',
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
         requires = {
-            'kyazdani42/nvim-web-devicons',
-        },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim"
+        }
     }
 
     -- cmp plugins
@@ -81,6 +85,20 @@ return require('packer').startup(function(use)
             require("lsp_lines").setup()
         end,
     })
+
+    use({
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    })
+
+    -- Debugging
+    use "mfussenegger/nvim-dap"
+    use "rcarriga/nvim-dap-ui"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "nvim-telescope/telescope-dap.nvim"
+
+    -- use 'leoluz/nvim-dap-go' -- Go not done
+    -- use 'mfussenegger/nvim-dap-python' -- Python not done
 
     -- Snippets
     use "L3MON4D3/LuaSnip"
