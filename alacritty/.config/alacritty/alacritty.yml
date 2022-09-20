@@ -8,7 +8,7 @@ font:
     style: Italic
   bold_italic:
     style: Bold Italic
-  size: 12
+  size: 8
   use_thin_strokes: false
   builtin_box_drawing: true
 colors:
@@ -45,3 +45,5 @@ window:
    dimensions:
      columns: 100
      lines: 30
+env:
+  TERM: xterm-256color

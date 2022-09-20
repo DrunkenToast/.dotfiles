@@ -73,6 +73,7 @@ end
 require('lspconfig')['pyright'].setup(config())
 require('lspconfig')['tsserver'].setup(config())
 require('lspconfig')['rust_analyzer'].setup(config())
+require('lspconfig')['csharp_ls'].setup(config())
 require('lspconfig').gopls.setup(config())
 require('lspconfig').html.setup(config())
 require('lspconfig').cssls.setup(config())

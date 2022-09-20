@@ -31,8 +31,9 @@
 -- }
 
 require('lualine').setup {
-  options = {
-    theme = 'auto',
-    component_separators = '|',
-  },
+    options = {
+        theme = 'gruvbox_dark',
+        component_separators = '|',
+        section_separators = { left = '', right = '' },
+    },
 }

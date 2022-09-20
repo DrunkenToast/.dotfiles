@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
         'goolord/alpha-nvim',
     }
 
+    -- Markdown
+    use 'ekickx/clipboard-image.nvim'
+
     -- Status line
     use {
         'nvim-lualine/lualine.nvim',

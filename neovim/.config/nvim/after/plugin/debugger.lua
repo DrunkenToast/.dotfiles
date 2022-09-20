@@ -16,24 +16,24 @@ vim.keymap.set({'n'}, '<F12>',":lua require'dap'.step_out()<CR>", {
     noremap = true, silent = true
 })
 
-vim.keymap.set({'n'}, '<leader>db',":lua require'dap'.toggle_breakpoint()<CR>", {
+vim.keymap.set({'n'}, '<space>db',":lua require'dap'.toggle_breakpoint()<CR>", {
     desc = 'Debugger toggle breakpoint',
     noremap = true, silent = true
 })
-vim.keymap.set({'n'}, '<leader>dB',":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", {
+vim.keymap.set({'n'}, '<space>dB',":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", {
     desc = 'Debugger set breakpoint condition',
     noremap = true, silent = true
 })
-vim.keymap.set({'n'}, '<leader>dl',":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {
+vim.keymap.set({'n'}, '<space>dl',":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {
     desc = 'Debugger set log point message',
     noremap = true, silent = true
 })
-vim.keymap.set({'n'}, '<leader>dr',":lua require'dap'.repl.open()<CR>", {
+vim.keymap.set({'n'}, '<space>dr',":lua require'dap'.repl.open()<CR>", {
     desc = 'Debugger repl open',
     noremap = true, silent = true
 })
 
-vim.keymap.set({'n'}, '<leader>do',":lua require'dapui'.toggle()<CR>", {
+vim.keymap.set({'n'}, '<space>do',":lua require'dapui'.toggle()<CR>", {
     desc = 'Debugger repl open',
     noremap = true, silent = true
 })
