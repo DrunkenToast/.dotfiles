@@ -47,6 +47,11 @@ return require('packer').startup(function(use)
 
     -- Markdown
     use 'ekickx/clipboard-image.nvim'
+    --- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 
     -- Status line
     use {
@@ -90,8 +95,8 @@ return require('packer').startup(function(use)
     })
 
     use({
-        'weilbith/nvim-code-action-menu',
-        cmd = 'CodeActionMenu',
+        "glepnir/lspsaga.nvim",
+        branch = "main",
     })
 
     -- Debugging
@@ -140,7 +145,6 @@ return require('packer').startup(function(use)
             }
         end
     }
-    --use "windwp/nvim-autopairs"
 
     -- git
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
@@ -152,7 +156,4 @@ return require('packer').startup(function(use)
     }
     use "tpope/vim-fugitive"
     --use "saadparwaiz1/cmp_luasnip" -- snippet completions
-    --use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
-    --
-
 end)
