@@ -99,6 +99,16 @@ return require('packer').startup(function(use)
         branch = "main",
     })
 
+    use 'simrat39/rust-tools.nvim'
+    use {
+        'saecki/crates.nvim',
+        tag = 'v0.2.1',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('crates').setup()
+        end,
+    }
+
     -- Debugging
     use "mfussenegger/nvim-dap"
     use "rcarriga/nvim-dap-ui"

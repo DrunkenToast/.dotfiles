@@ -65,11 +65,13 @@ local function config(_config)
     }, _config or {})
 end
 
-require('lspconfig')['pyright'].setup(config())
-require('lspconfig')['tsserver'].setup(config())
-require('lspconfig')['rust_analyzer'].setup(config())
-require('lspconfig')['csharp_ls'].setup(config())
+-- require('lspconfig').rust_analyzer.setup(config()) -- Setup done by rust-tools below
+require('lspconfig').opencl_ls.setup(config())
+require('lspconfig').bashls.setup(config())
+require('lspconfig').pyright.setup(config())
+require('lspconfig').csharp_ls.setup(config())
 require('lspconfig').gopls.setup(config())
+require('lspconfig').tsserver.setup(config())
 require('lspconfig').html.setup(config())
 require('lspconfig').cssls.setup(config())
 require('lspconfig').emmet_ls.setup(config({
@@ -106,4 +108,18 @@ require'lspconfig'.sumneko_lua.setup(config({
     },
   },
 }))
-require('lspconfig').bashls.setup(config())
+require('rust-tools').setup({
+    tools = {
+      autoSetHints = true,
+      hover_with_actions = false,
+      inlay_hints = {
+        only_current_line = false,
+      }
+    },
+    server = {
+      standalone = false;
+      capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
+      on_attach = on_attach,
+      flags = lsp_flags
+    }
+})
