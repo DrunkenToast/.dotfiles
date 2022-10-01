@@ -66,6 +66,8 @@ local function config(_config)
 end
 
 -- require('lspconfig').rust_analyzer.setup(config()) -- Setup done by rust-tools below
+require('lspconfig').angularls.setup(config())
+require('lspconfig').clangd.setup(config())
 require('lspconfig').opencl_ls.setup(config())
 require('lspconfig').bashls.setup(config())
 require('lspconfig').pyright.setup(config())

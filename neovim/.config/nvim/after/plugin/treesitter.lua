@@ -1,3 +1,9 @@
+local vim = vim
+local opt = vim.opt
+
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 require("nvim-treesitter.configs").setup {
     ensure_installed = "all",
     highlight = {
