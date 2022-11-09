@@ -7,7 +7,7 @@
 ## OPTIONS ##
 option1=" Logout"
 option2=" Reboot"
-option3=" Power off"
+option3=" Shutdown"
 option4="鈴 Suspend"
 option5=" Lock"
 option6="漣 Change power profile"

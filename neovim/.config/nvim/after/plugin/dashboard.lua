@@ -28,6 +28,7 @@ dashboard.section.header.val = {
 '           ░░                                                                ',
 '                              I use Neovim btw                               ',
 }
+
 -- Set menu
 dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),

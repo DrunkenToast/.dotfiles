@@ -7,7 +7,7 @@ complete -cf prime-run
 alias vim='nvim'
 alias v='nvim'
 alias cat='bat -p'
-alias storage='doas du -h | sort -h; df -h'
+alias storage='sudo du -h | sort -h; df -h'
 alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
 
 # Util aliases

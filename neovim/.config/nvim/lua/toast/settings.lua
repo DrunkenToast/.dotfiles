@@ -12,7 +12,7 @@ opt.ignorecase = true
 opt.errorbells = false
 opt.wrap = false
 
-opt.laststatus = 3
+opt.laststatus = 2
 
 opt.relativenumber = true
 opt.number = true
@@ -25,8 +25,6 @@ opt.expandtab = true
 opt.smartindent = true
 
 opt.mouse = 'a'
-
-opt.foldlevel = 99
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.

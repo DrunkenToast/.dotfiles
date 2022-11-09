@@ -44,6 +44,12 @@ return require('packer').startup(function(use)
     use {
         'goolord/alpha-nvim',
     }
+    use { 'anuvyklack/fold-preview.nvim',
+        requires = 'anuvyklack/keymap-amend.nvim',
+        config = function()
+            require('fold-preview').setup()
+        end,
+    }
 
     -- Markdown
     use 'ekickx/clipboard-image.nvim'
@@ -99,6 +105,11 @@ return require('packer').startup(function(use)
         branch = "main",
     })
 
+    use({
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    })
+
     use 'simrat39/rust-tools.nvim'
     use {
         'saecki/crates.nvim',
@@ -108,6 +119,11 @@ return require('packer').startup(function(use)
             require('crates').setup()
         end,
     }
+
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+    })
 
     -- Debugging
     use "mfussenegger/nvim-dap"
