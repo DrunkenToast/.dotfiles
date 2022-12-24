@@ -22,8 +22,9 @@ git clone https://github.com/DrunkenToast/.dotfiles.git
 
 ### Stowing
 
-- `stow */` all packages
-- `stow neovim` only neovim
+- `stow -nv -R */`
+    - If happy with the results, remove `n`
+- `stow neovim` to stow only the neovim package
 
 ### Stow conflicts
 
