@@ -17,7 +17,7 @@ require('lspsaga').init_lsp_saga()
 --     noremap = true, silent = true
 -- })
 
-vim.keymap.set('n', '<leader>o', '<cmd>LSoutlineToggle<CR>', {
+vim.keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<CR>', {
     desc = 'LSOutlineToggle',
     noremap = true, silent = true
 })
