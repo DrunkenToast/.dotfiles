@@ -8,7 +8,7 @@ font:
     style: Italic
   bold_italic:
     style: Bold Italic
-  size: 8
+  size: 10
   builtin_box_drawing: true
 colors:
   # Default colors
@@ -42,7 +42,8 @@ colors:
 
 window:
    dimensions:
-     columns: 100
+     columns: 110
      lines: 30
 env:
   TERM: xterm-256color
+  WINIT_X11_SCALE_FACTOR: "1.33"
