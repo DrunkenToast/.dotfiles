@@ -50,6 +50,7 @@ return require('packer').startup(function(use)
             require('fold-preview').setup()
         end,
     }
+    use 'eandrju/cellular-automaton.nvim'
 
     -- Markdown
     use 'ekickx/clipboard-image.nvim'
