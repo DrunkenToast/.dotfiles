@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 -- Theme
+vim.cmd.colorscheme('gruvbox')
 opt.termguicolors = true
 
 -- General
