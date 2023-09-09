@@ -1,0 +1,7 @@
+[core]
+    sshCommand = ssh -i ~/.ssh/id_rsa_personal
+[user]
+	name = Peter Leconte
+	email = peter5leconte@gmail.com
+[init]
+	defaultBranch = main

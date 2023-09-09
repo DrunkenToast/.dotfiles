@@ -1,0 +1,7 @@
+[core]
+    sshCommand = ssh -i ~/.ssh/id_rsa_work
+[user]
+	name = Peter Leconte
+	email = peter.leconte@hatch.be
+[init]
+	defaultBranch = main
