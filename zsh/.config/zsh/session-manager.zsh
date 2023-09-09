@@ -1,10 +1,10 @@
 # #!/usr/bin/env bash
 
-PROJECTS=/Users/peter/projects
+local PROJECTS=/Users/peter/projects
 
 pp() {
     local FOLDERS=$(
-    find "$PROJECTS" -maxdepth 2 -type d -exec sh -c '
+    find "$PROJECTS" -maxdepth 5 -type d -exec sh -c '
         for dir do
             if test -d "$dir/.git"; then
                 echo "$dir"
