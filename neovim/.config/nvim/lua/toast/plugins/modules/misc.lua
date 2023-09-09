@@ -2,15 +2,31 @@ return {
     -- Lualine
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        dependencies = { 
+            'nvim-tree/nvim-web-devicons',
+            'f-person/git-blame.nvim',
+        },
         event = { 'VimEnter' },
         config = function()
+
+            -- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+            local git_blame = require('gitblame')
+
             require('lualine').setup {
                 options = {
                     theme = 'gruvbox_dark',
                     component_separators = '|',
-                    section_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '',
+                    },
                 },
+                sections = {
+                    lualine_x = {
+                        -- { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available},
+                        'encoding',
+                        'fileformat',
+                        'filetype',
+                    }
+                }
             }
         end
     },

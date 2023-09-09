@@ -1,9 +1,38 @@
 return {
     {
-        "nvim-neo-tree/neo-tree.nvim",
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
-            { "\\", "<cmd>Neotree toggle<cr>", desc = "NeoTree - File tree explorer" },
+            { "\\", "<cmd>lua require('oil').toggle_float()<cr>", desc = "oil - File tree explorer" },
         },
+        config = function()
+            require("oil").setup({
+                keymaps = {
+                    ["?"] = "actions.show_help",
+                    ["<CR>"] = "actions.select",
+                    ["<C-s>"] = "actions.select_vsplit",
+                    ["<C-h>"] = "actions.select_split",
+                    ["<C-t>"] = "actions.select_tab",
+                    ["<C-p>"] = "actions.preview",
+                    ["<C-c>"] = "actions.close",
+                    ["<C-l>"] = "actions.refresh",
+                    ["<BS>"] = "actions.parent",
+                    ["-"] = "actions.open_cwd",
+                    ["`"] = "actions.cd",
+                    ["."] = "actions.tcd",
+                    ["H"] = "actions.toggle_hidden",
+                },
+
+            })
+        end
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        event = "VeryLazy",
+        -- keys = {
+        --     { "\\", "<cmd>Neotree toggle<cr>", desc = "NeoTree - File tree explorer" },
+        -- },
         dependencies = {
             {
                 "nvim-lua/plenary.nvim",
@@ -27,7 +56,7 @@ return {
                 enable_git_status = true,
                 enable_diagnostics = true,
                 sort_case_insensitive = false, -- used when sorting files and directories in the tree
-                sort_function = nil, -- use a custom function for sorting files and directories in the tree
+                sort_function = nil,           -- use a custom function for sorting files and directories in the tree
                 -- sort_function = function (a,b)
                 --       if a.type == b.type then
                 --           return a.path > b.path
@@ -165,9 +194,12 @@ return {
                             --"thumbs.db"
                         },
                     },
-                    follow_current_file = false, -- This will find and focus the file in the active buffer every
+                    follow_current_file = {
+                        enabled = false,
+                    },
+                    -- This will find and focus the file in the active buffer every
                     -- time the current file is changed while the tree is open.
-                    group_empty_dirs = false, -- when true, empty folders will be grouped together
+                    group_empty_dirs = false,               -- when true, empty folders will be grouped together
                     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
                     -- in whatever position is specified in window.position
                     -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -190,7 +222,10 @@ return {
                     }
                 },
                 buffers = {
-                    follow_current_file = true, -- This will find and focus the file in the active buffer every
+                    follow_current_file = {
+                        enabled = true,
+                    },
+                    -- This will find and focus the file in the active buffer every
                     -- time the current file is changed while the tree is open.
                     group_empty_dirs = true, -- when true, empty folders will be grouped together
                     show_unloaded = true,

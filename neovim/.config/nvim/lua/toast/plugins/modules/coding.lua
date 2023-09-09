@@ -8,39 +8,36 @@ return {
     },
     {
         "windwp/nvim-autopairs",
+        event = { 'InsertEnter' },
         config = function()
             require("nvim-autopairs").setup {
                 check_ts = true,
             }
         end
     },
-    -- {
-    --     'weilbith/nvim-code-action-menu',
-    --     cmd = 'CodeActionMenu',
-    -- },
     {
-        -- Basically only here to do prettier
-        "jose-elias-alvarez/null-ls.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        "sindrets/diffview.nvim",
+        event = { 'VeryLazy' },
         config = function()
-            local null_ls = require("null-ls")
+            require('diffview').setup({
+                enhanced_diff_hl = true,
+            })
+        end
+    },
+    {
+        "nvimdev/guard.nvim",
+        event = { 'BufReadPost', 'BufNewFile' },
+        config = function()
+            local ft = require('guard.filetype')
 
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.prettier.with({
-                        extra_args = function(params)
-                            return params.options
-                                and params.options.tabSize
-                                and {
-                                    "--tab-width",
-                                    params.options.tabSize,
-                                }
-                        end,
-                    }),
-                    -- null_ls.builtins.formatting.stylua,
-                    -- null_ls.builtins.diagnostics.eslint,
-                    -- null_ls.builtins.completion.spell,
-                }
+            ft('typescript,javascript,typescriptreact,vue,html,astro,json'):fmt('prettierd')
+
+            -- Call setup() LAST!
+            require('guard').setup({
+                -- the only options for the setup function
+                fmt_on_save = true,
+                -- Use lsp if no formatter was defined for this filetype
+                lsp_as_default_formatter = false,
             })
         end
     },
