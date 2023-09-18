@@ -27,5 +27,3 @@ for rc in ~/.config/bash/*; do
 done
 
 eval "$(starship init bash)"
-
-cowsay "Sup, how ya doin'?" | lolcat
