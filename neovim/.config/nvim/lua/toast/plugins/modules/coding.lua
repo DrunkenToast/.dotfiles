@@ -25,19 +25,27 @@ return {
         end
     },
     {
-        "nvimdev/guard.nvim",
+        "stevearc/conform.nvim",
         event = { 'BufReadPost', 'BufNewFile' },
         config = function()
-            local ft = require('guard.filetype')
-
-            ft('typescript,javascript,typescriptreact,vue,html,astro,json'):fmt('prettierd')
-
-            -- Call setup() LAST!
-            require('guard').setup({
-                -- the only options for the setup function
-                fmt_on_save = true,
-                -- Use lsp if no formatter was defined for this filetype
-                lsp_as_default_formatter = false,
+            -- TODO change <leader>bf to use conform if available and
+            -- fall back to lsp format
+            -- TODO Setup ESLINT
+            require("conform").setup({
+                formatters_by_ft = {
+                    javascript = { { "prettierd", "prettier" } },
+                    vue = { { "prettierd", "prettier" } },
+                    typescript = { { "prettierd", "prettier" } },
+                    typescriptreact = { { "prettierd", "prettier" } },
+                    astro = { { "prettierd", "prettier" } },
+                    json = { { "prettierd", "prettier" } },
+                    html = { { "prettierd", "prettier" } },
+                },
+                format_on_save = {
+                    -- These options will be passed to conform.format()
+                    timeout_ms = 500,
+                    lsp_fallback = true,
+                },
             })
         end
     },
