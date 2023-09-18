@@ -20,7 +20,9 @@ return {
                 ensure_installed = {
                     "c",
                     "lua",
-                    "vim"
+                    "vim",
+                    "markdown",
+                    "markdown_inline"
                 },
                 auto_install = true,
                 highlight = {

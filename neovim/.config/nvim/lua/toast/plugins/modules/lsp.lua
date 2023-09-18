@@ -94,10 +94,14 @@ return {
                     -- Enable completion triggered by <c-x><c-o>
                     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-                    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-                    vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)
-                    vim.keymap.set('n', '<space>bf', function() vim.lsp.buf.format { async = true } end, opts)
-                    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+                    -- vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+                    vim.keymap.set('n', '<leader>bf', function() vim.lsp.buf.format { async = true } end, opts)
+                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+
+                    vim.keymap.set('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>', { buffer = bufnr })
+                    vim.keymap.set('n', '<leader>r', '<cmd>Lspsaga rename<cr>', opts)
+                    vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
 
                     vim.keymap.set('n', '<space>tl', function()
                         require('lsp_lines').toggle()
@@ -150,13 +154,17 @@ return {
     -- lspsaga
     {
         "glepnir/lspsaga.nvim",
+        event = "LspAttach",
         config = function()
             require("lspsaga").setup({})
         end,
         keys = {
             {
-                '<leader>ca', '<cmd>Lspsaga code_action<cr>',
-                desc = 'Open code action menu', noremap = true, silent = true
+                '<leader>ca',
+                '<cmd>Lspsaga code_action<cr>',
+                desc = 'Open code action menu',
+                noremap = true,
+                silent = true
             }
         },
         dependencies = {
@@ -174,4 +182,53 @@ return {
             require("lsp_lines").setup()
         end,
     },
+
+    {
+        lazy = false,
+        "folke/trouble.nvim",
+        cmd = { "Trouble", "TroubleToggle" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        keys = {
+            {
+                "<leader>xx",
+                '<CMD>TroubleToggle<CR>',
+                desc = "Toggle Trouble. Diagnostics, references, quickfix and location lists.",
+                noremap = true,
+                silent = true
+            },
+            {
+                "<leader>xw",
+                '<CMD>TroubleToggle workspace_diagnostics<CR>',
+                desc = "Toggle Trouble. Workspace LSP diagnostics.",
+                noremap = true,
+                silent = true
+            },
+            {
+                "<leader>xd",
+                '<CMD>TroubleToggle document_diagnostics<CR>',
+                desc = "Toggle Trouble. Document LSP diagnostics.",
+                noremap = true,
+                silent = true
+            },
+            {
+                "<leader>xq",
+                '<CMD>TroubleToggle quickfix<CR>',
+                desc = "Toggle Trouble. Quickfix.",
+                noremap = true,
+                silent = true
+            },
+            {
+                "gr",
+                '<CMD>TroubleToggle<CR>',
+                desc = "Toggle Trouble. LSP references.",
+                noremap = true,
+                silent = true
+            },
+        }
+    }
 }

@@ -27,3 +27,4 @@ for rc in ~/.config/bash/*; do
 done
 
 eval "$(starship init bash)"
+. "$HOME/.cargo/env"

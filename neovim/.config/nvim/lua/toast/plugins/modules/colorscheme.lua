@@ -1,7 +1,7 @@
 return {
     {
         "ellisonleao/gruvbox.nvim",
-        config = function ()
+        config = function()
             require("gruvbox").setup({
                 undercurl = true,
                 underline = true,
@@ -18,12 +18,27 @@ return {
                 invert_tabline = false,
                 invert_intend_guides = false,
                 inverse = true, -- invert background for search, diffs, statuslines and errors
-                contrast = "", -- can be "hard", "soft" or empty string
+                contrast = "",  -- can be "hard", "soft" or empty string
                 overrides = {},
                 dim_inactive = false,
                 transparent_mode = false,
             })
         end
     },
-    { "rebelot/kanagawa.nvim" },
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            require('kanagawa').setup({
+                theme = "dragon", -- Load "wave" theme when 'background' option is not set
+                -- background = {     -- map the value of 'background' option to a theme
+                --     dark = "wave", -- try "dragon" !
+                --     light = "lotus"
+                -- },
+            })
+        end
+    },
+    {
+        'AlexvZyl/nordic.nvim',
+    },
+    { "savq/melange-nvim" }
 }
