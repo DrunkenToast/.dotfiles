@@ -6,15 +6,24 @@ return {
         dependencies = {
             {
                 'JoosepAlviste/nvim-ts-context-commentstring',
+                'nvim-treesitter/nvim-treesitter-context',
             }
         },
         config = function()
+            -- Set up mdx
+            vim.filetype.add({ extension = { mdx = 'mdx' } })
+            local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+            ft_to_parser.mdx = "markdown"
+
+            -- Treesitter context
+            require('treesitter-context').setup({})
+
             local opt = vim.opt
 
             opt.foldmethod = "expr"
             opt.foldexpr = "nvim_treesitter#foldexpr()"
-            opt.foldenable = false
-            opt.foldlevel = 999
+            -- opt.foldenable = false
+            -- opt.foldlevel = 999
 
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
@@ -39,5 +48,5 @@ return {
                 },
             }
         end
-    }
+    },
 }

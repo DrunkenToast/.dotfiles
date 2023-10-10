@@ -1,7 +1,7 @@
 return {
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        branch = 'v3.x',
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             -- LSP Support
@@ -45,32 +45,37 @@ return {
             vim.fn.sign_define("DiagnosticSignHint",
                 { text = "", texthl = "DiagnosticSignHint" })
 
-            local lsp = require('lsp-zero')
-            local lspkind = require('lspkind')
+            local lsp_zero = require('lsp-zero')
+            local lsp_kind = require('lspkind')
             local cmp = require('cmp')
 
-            lsp.preset('recommended')
+            lsp_zero.preset('recommended')
 
-            lsp.ensure_installed({
-                'tsserver',
-                'rust_analyzer',
-                'lua_ls',
-                'marksman',
+            require('mason').setup({}) -- TODO check this
+            require('mason-lspconfig').setup({
+                ensure_installed =
+                {
+                    'tsserver',
+                    'rust_analyzer',
+                    'lua_ls',
+                    'marksman',
+                },
+                handlers = { lsp_zero.default_setup },
             })
 
             vim.fn.setenv('GDScript_Port', 6005)
-            lsp.configure('gdscript', { force_setup = true })
+            lsp_zero.configure('gdscript', { force_setup = true })
 
-            local rust_lsp = lsp.build_options('rust_analyzer', {})
+            local rust_lsp = lsp_zero.build_options('rust_analyzer', {})
 
-            lsp.setup()
+            lsp_zero.setup()
 
-            local cmp_config = lsp.defaults.cmp_config({
+            local cmp_config = lsp_zero.defaults.cmp_config({
                 mapping = {
                     ['<CR>'] = cmp.mapping.confirm({ select = false }),
                 },
                 formatting = {
-                    format = lspkind.cmp_format({
+                    format = lsp_kind.cmp_format({
                         mode = 'symbol',
                         menu = "",
                     })
@@ -88,7 +93,7 @@ return {
                 virtual_lines = false,
             })
 
-            lsp.on_attach(
+            lsp_zero.on_attach(
                 function(client, bufnr)
                     local opts = { remap = false, silent = true, buffer = bufnr }
                     -- Enable completion triggered by <c-x><c-o>
@@ -99,7 +104,7 @@ return {
                     vim.keymap.set('n', '<leader>bf', function() vim.lsp.buf.format { async = true } end, opts)
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 
-                    vim.keymap.set('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>', { buffer = bufnr })
+                    vim.keymap.set('n', 'gr', '<cmd>Trouble lsp_references<cr>', { buffer = bufnr })
                     vim.keymap.set('n', '<leader>r', '<cmd>Lspsaga rename<cr>', opts)
                     vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
 
@@ -156,7 +161,11 @@ return {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",
         config = function()
-            require("lspsaga").setup({})
+            require("lspsaga").setup({
+                symbol_in_winbar = {
+                    enable = false
+                }
+            })
         end,
         keys = {
             {
@@ -184,48 +193,42 @@ return {
     },
 
     {
-        lazy = false,
         "folke/trouble.nvim",
         cmd = { "Trouble", "TroubleToggle" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
         keys = {
             {
                 "<leader>xx",
                 '<CMD>TroubleToggle<CR>',
-                desc = "Toggle Trouble. Diagnostics, references, quickfix and location lists.",
+                desc = "Toggle Trouble",
                 noremap = true,
                 silent = true
             },
             {
                 "<leader>xw",
-                '<CMD>TroubleToggle workspace_diagnostics<CR>',
-                desc = "Toggle Trouble. Workspace LSP diagnostics.",
+                '<CMD>Trouble workspace_diagnostics<CR>',
+                desc = "Trouble. Workspace LSP diagnostics.",
                 noremap = true,
                 silent = true
             },
             {
                 "<leader>xd",
-                '<CMD>TroubleToggle document_diagnostics<CR>',
-                desc = "Toggle Trouble. Document LSP diagnostics.",
+                '<CMD>Trouble document_diagnostics<CR>',
+                desc = "Trouble. Document LSP diagnostics.",
                 noremap = true,
                 silent = true
             },
             {
                 "<leader>xq",
-                '<CMD>TroubleToggle quickfix<CR>',
-                desc = "Toggle Trouble. Quickfix.",
+                '<CMD>Trouble quickfix<CR>',
+                desc = "Trouble. Quickfix.",
                 noremap = true,
                 silent = true
             },
             {
                 "gr",
-                '<CMD>TroubleToggle<CR>',
-                desc = "Toggle Trouble. LSP references.",
+                '<CMD>Trouble<CR>',
+                desc = "Trouble. LSP references.",
                 noremap = true,
                 silent = true
             },

@@ -1,8 +1,15 @@
 local opt = vim.opt
 
+-- Folding
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = true
+opt.foldlevel = 999
+
 -- Theme
-vim.cmd.colorscheme('kanagawa')
+vim.cmd.colorscheme('gruvbox')
 opt.termguicolors = true
+
 
 -- General
 opt.compatible = false
@@ -12,6 +19,7 @@ opt.hlsearch = false
 opt.ignorecase = true
 opt.errorbells = false
 opt.wrap = false
+opt.cursorline = true
 
 opt.laststatus = 2
 

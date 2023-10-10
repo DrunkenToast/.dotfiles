@@ -18,7 +18,7 @@ return {
                 local dap = require("dap")
 
                 require("dap-vscode-js").setup({
-                    adapters = { --[[ 'pwa-node',  ]]'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+                    adapters = { --[[ 'pwa-node',  ]] 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
                     debugger_cmd = { "js-debug-adapter" },
                 })
 
@@ -28,7 +28,7 @@ return {
                     port = "${port}",
                     executable = {
                         command = "js-debug-adapter",
-                        args = {"${port}"},
+                        args = { "${port}" },
                     }
                 }
 
@@ -44,8 +44,9 @@ return {
                             -- default port: 9222
                             request = "attach",
                             -- allows us to pick the process using a picker
-                            processId = function ()
-                                return require('dap.utils').pick_process({ filter='node'})
+                            processId = function()
+                                return require('dap.utils').pick_process({
+                                    filter = function(proc) return string.match(proc.name, ".*node.*") end })
                             end,
                             -- name of the debug action you have to select for this config
                             name = "Attach debugger to existing `node --inspect` process",

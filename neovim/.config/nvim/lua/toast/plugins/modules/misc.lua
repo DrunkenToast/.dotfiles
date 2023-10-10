@@ -13,7 +13,7 @@ return {
 
             require('lualine').setup {
                 options = {
-                    theme = 'kanagawa',
+                    theme = 'gruvbox',
                     component_separators = '|',
                     section_separators = { left = '', right = '',
                     },
@@ -30,30 +30,24 @@ return {
         end
     },
 
-    -- Tabs
-    {
-        'akinsho/bufferline.nvim',
-        event = "VeryLazy",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("bufferline").setup({
-                options = {
-                    always_show_bufferline = false,
-                }
-            })
-        end
-    },
-
     -- Highlight colors
     {
         'NvChad/nvim-colorizer.lua',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
             require 'colorizer'.setup({
                 filetypes = {
-                    '*',                      -- Highlight all files, but customize some others.
+                    'javascript',
+                    'typescript',
+                    'vue',
+                    'lua',
+                    'json',
+                    'toml',
+                    'svelte',
+                    'sass',
+                    'scss',
                     css = { css = true, },    -- Enable parsing rgb(...) functions in css.
-                    html = { names = false, } -- Disable parsing "names" like Blue or Gray
+                    html = { names = false, } -- Disable parsing 'names' like Blue or Gray
                 },
                 user_default_options = {
                     tailwind = 'lsp',
@@ -99,7 +93,7 @@ return {
                 debounce_timeout    = 10,                                      -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
                 enable_line_number  = false,                                   -- Displays the current line number instead of the current project
                 blacklist           = {},                                      -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-                buttons             = true,                                    -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+                buttons             = false,                                   -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
                 file_assets         = {},                                      -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
                 -- Rich Presence text options
                 editing_text        = "Editing madness",                       -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
