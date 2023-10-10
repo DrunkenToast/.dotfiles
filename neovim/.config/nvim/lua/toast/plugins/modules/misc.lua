@@ -19,12 +19,9 @@ return {
                     },
                 },
                 sections = {
-                    lualine_x = {
-                        -- { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available},
-                        'encoding',
-                        'fileformat',
-                        'filetype',
-                    }
+                    lualine_b = { 'filename' },
+                    lualine_c = { 'branch', 'diff', 'diagnostics' },
+                    lualine_x = { 'filetype' }
                 }
             }
         end

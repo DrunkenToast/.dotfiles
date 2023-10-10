@@ -9,6 +9,15 @@
 
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Source all cfgs
 for rc in ~/.config/zsh/*; do
     if [ -f "$rc" ]; then

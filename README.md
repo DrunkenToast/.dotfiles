@@ -42,7 +42,7 @@ stow --adopt bar
 git restore .
 ```
 
-*`--adopt` will **overwrite** the current file in the dotfiles as a package.  
+\*`--adopt` will **overwrite** the current file in the dotfiles as a package.  
 Hence git restore is used to restore the contents.
 
 Another solution is to just remove the conflicting files and then stowing.

@@ -1,11 +1,5 @@
 local opt = vim.opt
 
--- Folding
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldenable = true
-opt.foldlevel = 999
-
 -- Theme
 vim.cmd.colorscheme('gruvbox')
 opt.termguicolors = true
@@ -22,6 +16,7 @@ opt.wrap = false
 opt.cursorline = true
 
 opt.laststatus = 2
+opt.showmode = false
 
 opt.relativenumber = true
 opt.number = true
@@ -34,6 +29,24 @@ opt.expandtab = true
 opt.smartindent = true
 
 opt.mouse = 'a'
+
+-- opt.conceallevel = 3
+
+-- Folding
+opt.foldenable = true
+opt.foldlevel = 99
+
+-- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
+if vim.fn.has("nvim-0.10") == 1 then
+    opt.foldmethod = "expr"
+    opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+else
+    opt.foldmethod = "indent"
+end
+
+if vim.fn.has("nvim-0.10") == 1 then
+    opt.smoothscroll = true
+end
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.

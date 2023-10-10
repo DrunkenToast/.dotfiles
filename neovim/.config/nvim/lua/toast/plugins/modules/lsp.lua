@@ -30,9 +30,6 @@ return {
             { "onsails/lspkind-nvim" },
             -- Rust tools
             { 'simrat39/rust-tools.nvim' },
-
-            -- Signature completion
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
         },
         config = function()
             -- If you want icons for diagnostic errors, you'll need to define them somewhere:
@@ -81,8 +78,6 @@ return {
                     })
                 },
             })
-
-            table.insert(cmp_config.sources, { name = 'nvim_lsp_signature_help' });
 
             cmp.setup(cmp_config)
 
@@ -181,6 +176,17 @@ return {
             --Please make sure you install markdown and markdown_inline parser
             { "nvim-treesitter/nvim-treesitter" }
         },
+    },
+
+    -- LSP signature help
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        config = function()
+            require 'lsp_signature'.setup({
+                hint_enable = false,
+            })
+        end
     },
 
     -- LSP lines
