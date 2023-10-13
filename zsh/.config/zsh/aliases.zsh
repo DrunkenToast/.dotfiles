@@ -1,4 +1,4 @@
-# !/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # General aliases
 alias vim='nvim'
@@ -8,8 +8,8 @@ alias storage='sudo du -h | sort -h; df -h'
 alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
 
 # Util aliases
-alias exa='exa --color=auto --color-scale --group-directories-first'    #'ls --color=auto --group-directories-first'    # Add --icons once it is supported
-alias ls='exa'
+alias eza='eza --color=auto --color-scale --group-directories-first'    #'ls --color=auto --group-directories-first'    # Add --icons once it is supported
+alias ls='eza'
 alias l='ls -Fl'    #'ls -lFh'                    #size,show type,human readable
 alias la='ls -Fla'    #'ls -lAFh'                #long list,show almost all,show type,human readable
 alias lr='ls -RFrs modified'    #'ls -tRFh'        #sorted by date,recursive,show type,human readable
