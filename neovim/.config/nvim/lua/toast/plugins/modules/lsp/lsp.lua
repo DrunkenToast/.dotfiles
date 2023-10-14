@@ -30,6 +30,9 @@ return {
             { "onsails/lspkind-nvim" },
             -- Rust tools
             { 'simrat39/rust-tools.nvim' },
+
+            -- -- For certain keybinds
+            -- { "glepnir/lspsaga.nvim" },
         },
         config = function()
             -- If you want icons for diagnostic errors, you'll need to define them somewhere:
@@ -57,15 +60,25 @@ return {
                     'lua_ls',
                     'marksman',
                 },
-                handlers = { lsp_zero.default_setup },
+                handlers = {
+                    lsp_zero.default_setup,
+                    rust_analyzer = function()
+                        local rt = require('rust-tools')
+                        rt.setup({
+                            server = {
+                                on_attach = function(_, bufnr)
+                                    vim.keymap.set('n', 'K', rt.hover_actions.hover_actions,
+                                        { buffer = bufnr })
+                                end
+                            }
+                        })
+                    end
+                },
             })
 
+            -- Godot
             vim.fn.setenv('GDScript_Port', 6005)
             lsp_zero.configure('gdscript', { force_setup = true })
-
-            local rust_lsp = lsp_zero.build_options('rust_analyzer', {})
-
-            lsp_zero.setup()
 
             local cmp_config = lsp_zero.defaults.cmp_config({
                 mapping = {
@@ -110,7 +123,7 @@ return {
                 end
             )
 
-            require('rust-tools').setup({ server = rust_lsp })
+            lsp_zero.setup()
 
             require("luasnip.loaders.from_vscode").lazy_load({
                 --paths = snippets_paths(),
@@ -119,65 +132,6 @@ return {
             })
         end
     },
-
-    {
-        "hrsh7th/cmp-cmdline", -- cmdline completions
-        event = "CmdlineEnter",
-        config = function()
-            local cmp = require 'cmp'
-            cmp.setup.cmdline('/', {
-                completion = {
-                    completeopt = 'menu,menuone,noinsert,noselect'
-                },
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = 'buffer' }
-                }
-            })
-
-            cmp.setup.cmdline(':', {
-                completion = {
-                    completeopt = 'menu,menuone,noinsert,noselect'
-
-                },
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = 'path' }
-
-                }, {
-                    { name = 'cmdline' }
-                })
-            })
-        end
-    },
-
-    -- lspsaga
-    {
-        "glepnir/lspsaga.nvim",
-        event = "LspAttach",
-        config = function()
-            require("lspsaga").setup({
-                symbol_in_winbar = {
-                    enable = false
-                }
-            })
-        end,
-        keys = {
-            {
-                '<leader>ca',
-                '<cmd>Lspsaga code_action<cr>',
-                desc = 'Open code action menu',
-                noremap = true,
-                silent = true
-            }
-        },
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-            --Please make sure you install markdown and markdown_inline parser
-            { "nvim-treesitter/nvim-treesitter" }
-        },
-    },
-
     -- LSP signature help
     {
         "ray-x/lsp_signature.nvim",
@@ -188,56 +142,4 @@ return {
             })
         end
     },
-
-    -- LSP lines
-    {
-        url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("lsp_lines").setup()
-        end,
-    },
-
-    {
-        "folke/trouble.nvim",
-        cmd = { "Trouble", "TroubleToggle" },
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        keys = {
-            {
-                "<leader>xx",
-                '<CMD>TroubleToggle<CR>',
-                desc = "Toggle Trouble",
-                noremap = true,
-                silent = true
-            },
-            {
-                "<leader>xw",
-                '<CMD>Trouble workspace_diagnostics<CR>',
-                desc = "Trouble. Workspace LSP diagnostics.",
-                noremap = true,
-                silent = true
-            },
-            {
-                "<leader>xd",
-                '<CMD>Trouble document_diagnostics<CR>',
-                desc = "Trouble. Document LSP diagnostics.",
-                noremap = true,
-                silent = true
-            },
-            {
-                "<leader>xq",
-                '<CMD>Trouble quickfix<CR>',
-                desc = "Trouble. Quickfix.",
-                noremap = true,
-                silent = true
-            },
-            {
-                "gr",
-                '<CMD>Trouble<CR>',
-                desc = "Trouble. LSP references.",
-                noremap = true,
-                silent = true
-            },
-        }
-    }
 }
