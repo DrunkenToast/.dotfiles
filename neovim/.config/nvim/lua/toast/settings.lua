@@ -30,6 +30,9 @@ opt.smartindent = true
 
 opt.mouse = 'a'
 
+opt.undofile = true
+opt.undolevels = 10000
+
 -- opt.conceallevel = 3
 
 -- Folding

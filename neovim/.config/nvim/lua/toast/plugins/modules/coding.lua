@@ -28,9 +28,9 @@ return {
         "stevearc/conform.nvim",
         event = { 'BufReadPost', 'BufNewFile' },
         config = function()
-            -- TODO change <leader>bf to use conform if available and
+            -- TODO: change <leader>bf to use conform if available and
             -- fall back to lsp format
-            -- TODO Setup ESLINT
+            -- TODO: Setup ESLINT
             require("conform").setup({
                 formatters_by_ft = {
                     javascript = { { "prettierd", "prettier" } },
@@ -49,4 +49,29 @@ return {
             })
         end
     },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        -- NOTE: https://github.com/LazyVim/LazyVim/discussions/1583
+        event = "VeryLazy",
+        opts = {
+            highlight = {
+                pattern = [[.*<(KEYWORDS)\s*[:@]\s*]] -- vim regex
+            },
+            search = {
+                -- Matches with "TODO: something" and "TODO @PL something"
+                pattern = [[\b(KEYWORDS)\s*[:@]\b]], -- ripgrep regex
+            }
+        },
+        keys = {
+            {
+                "<leader>xt",
+                '<CMD>TodoTrouble<CR>',
+                desc = "Open todos in Trouble",
+                noremap = true,
+                silent = true
+            },
+        },
+    }
 }
