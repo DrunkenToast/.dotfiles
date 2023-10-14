@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# nvidia
-complete -cf prime-run
-
 # General aliases
 alias vim='nvim'
 alias v='nvim'
@@ -13,11 +10,11 @@ alias add="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
 # Util aliases
 alias eza='eza --color=auto --color-scale --group-directories-first'    #'ls --color=auto --group-directories-first'    # Add --icons once it is supported
 alias ls='eza'
-alias l='ls -Fl'    #'ls -lFh'                    #size,show type,human readable
-alias la='ls -Fla'    #'ls -lAFh'                #long list,show almost all,show type,human readable
+alias l='ls -Fl --icons'    #'ls -lFh'                    #size,show type,human readable
+alias la='ls -Fla --icons'    #'ls -lAFh'                #long list,show almost all,show type,human readable
 alias lr='ls -RFrs modified'    #'ls -tRFh'        #sorted by date,recursive,show type,human readable
 alias lt='ls -lrFs modified'    #'ls -ltFhi'    #long list,sorted by date,show type,human readable
-alias ll='ls -lg'    #'ls -l'                    #long list
+alias ll='ls -lg --icons'    #'ls -l'                    #long list
 alias lsdot='ls -d .*'    #'ls -d .*'
 alias ldot='ls -ld .*'    #'ls -ld .*'
 alias lS='ls -1FrSs size'    #'ls -1FSsh'

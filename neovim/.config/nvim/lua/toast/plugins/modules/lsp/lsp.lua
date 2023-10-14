@@ -103,6 +103,7 @@ return {
 
             lsp_zero.on_attach(
                 function(client, bufnr)
+                    lsp_zero.default_keymaps({ buffer = bufnr })
                     local opts = { remap = false, silent = true, buffer = bufnr }
                     -- Enable completion triggered by <c-x><c-o>
                     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
