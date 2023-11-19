@@ -4,7 +4,6 @@ local opt = vim.opt
 vim.cmd.colorscheme('gruvbox')
 opt.termguicolors = true
 
-
 -- General
 opt.compatible = false
 opt.colorcolumn = "80"
@@ -36,13 +35,13 @@ opt.undolevels = 10000
 -- opt.conceallevel = 3
 
 -- Folding
-opt.foldenable = true
-opt.foldlevel = 99
+opt.foldenable = false
+opt.foldlevel = 999
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
     opt.foldmethod = "expr"
-    opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    opt.foldexpr = "nvim_treesitter#foldexpr()"
 else
     opt.foldmethod = "indent"
 end

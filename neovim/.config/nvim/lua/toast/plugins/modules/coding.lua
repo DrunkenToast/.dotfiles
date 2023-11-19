@@ -6,52 +6,53 @@ return {
             require('Comment').setup()
         end
     },
+
     {
         "windwp/nvim-autopairs",
         event = { 'InsertEnter' },
-        config = function()
-            require("nvim-autopairs").setup {
-                check_ts = true,
-            }
-        end
+        opts = {
+            check_ts = true,
+        },
     },
+
     {
         "sindrets/diffview.nvim",
         event = { 'VeryLazy' },
-        config = function()
-            require('diffview').setup({
-                enhanced_diff_hl = true,
-            })
-        end
+        opts = {
+            enhanced_diff_hl = true,
+        }
     },
+
     {
         "stevearc/conform.nvim",
         event = { 'BufReadPost', 'BufNewFile' },
-        config = function()
+        opts = {
             -- TODO: change <leader>bf to use conform if available and
             -- fall back to lsp format
             -- TODO: Setup ESLINT
-            require("conform").setup({
-                formatters_by_ft = {
-                    javascript = { { "prettierd", "prettier" } },
-                    vue = { { "prettierd", "prettier" } },
-                    typescript = { { "prettierd", "prettier" } },
-                    typescriptreact = { { "prettierd", "prettier" } },
-                    astro = { { "prettierd", "prettier" } },
-                    json = { { "prettierd", "prettier" } },
-                    html = { { "prettierd", "prettier" } },
-                },
-                format_on_save = {
-                    -- These options will be passed to conform.format()
-                    timeout_ms = 500,
-                    lsp_fallback = true,
-                },
-            })
-        end
+            formatters_by_ft = {
+                javascript = { { "prettierd", "prettier" } },
+                vue = { { "prettierd", "prettier" } },
+                typescript = { { "prettierd", "prettier" } },
+                typescriptreact = { { "prettierd", "prettier" } },
+                astro = { { "prettierd", "prettier" } },
+                json = { { "prettierd", "prettier" } },
+                html = { { "prettierd", "prettier" } },
+            },
+            format_on_save = {
+                -- These options will be passed to conform.format()
+                timeout_ms = 500,
+                lsp_fallback = true,
+            },
+        }
     },
+
+    -- TODO highlighting and browsing
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
         cmd = { "TodoTrouble", "TodoTelescope" },
         -- NOTE: https://github.com/LazyVim/LazyVim/discussions/1583
         event = "VeryLazy",

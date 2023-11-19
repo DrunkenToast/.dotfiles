@@ -16,11 +16,11 @@ return {
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
+            { 'saadparwaiz1/cmp_luasnip' },
 
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
@@ -90,6 +90,13 @@ return {
                         menu = "",
                     })
                 },
+                sources = {
+                    { name = 'nvim_lsp' },
+                    { name = 'nvim_lua' }, -- nvim-cmp source for neovim Lua API
+                    { name = "buffer" },
+                    { name = "path" },
+                    { name = "crates" }, -- For rust crates
+                }
             })
 
             cmp.setup(cmp_config)
@@ -116,11 +123,6 @@ return {
                     vim.keymap.set('n', 'gr', '<cmd>Trouble lsp_references<cr>', { buffer = bufnr })
                     vim.keymap.set('n', '<leader>r', '<cmd>Lspsaga rename<cr>', opts)
                     vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
-
-                    vim.keymap.set('n', '<space>tl', function()
-                        require('lsp_lines').toggle()
-                        vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
-                    end, opts)
                 end
             )
 
@@ -130,16 +132,6 @@ return {
                 --paths = snippets_paths(),
                 include = nil, -- Load all languages
                 exclude = {},
-            })
-        end
-    },
-    -- LSP signature help
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        config = function()
-            require 'lsp_signature'.setup({
-                hint_enable = false,
             })
         end
     },

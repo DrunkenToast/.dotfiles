@@ -4,12 +4,14 @@ return {
         'nvim-lualine/lualine.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
-            'f-person/git-blame.nvim',
+            -- 'f-person/git-blame.nvim',
         },
         event = { 'VimEnter' },
         config = function()
-            -- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
-            local git_blame = require('gitblame')
+            -- -- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+            -- local git_blame = require('gitblame').setup({
+            --
+            -- })
 
             require('lualine').setup {
                 options = {
@@ -25,6 +27,20 @@ return {
                 }
             }
         end
+    },
+
+    -- Git blame
+    {
+        'f-person/git-blame.nvim',
+        opts = {
+            enabled = false, -- First load is toggle
+        },
+        keys = {
+            {
+                "<leader>tb",
+                '<CMD>GitBlameToggle<CR>'
+            }
+        }
     },
 
     -- Highlight colors

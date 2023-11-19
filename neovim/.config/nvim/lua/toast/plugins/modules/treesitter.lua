@@ -10,6 +10,9 @@ return {
             }
         },
         config = function()
+            vim.g.skip_ts_context_commentstring_module = true
+            require('ts_context_commentstring').setup {}
+
             -- Set up mdx
             vim.filetype.add({ extension = { mdx = 'mdx' } })
             vim.treesitter.language.register('markdown', 'mdx')
@@ -33,10 +36,6 @@ return {
                 },
                 indent = {
                     enable = true,
-                },
-                context_commentstring = {
-                    enable = true,
-                    -- enable_autocmd = false,
                 },
             }
         end

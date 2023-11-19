@@ -1,8 +1,7 @@
 return {
     require("toast.plugins.modules.lsp.lsp"),
-    require("toast.plugins.modules.lsp.lsplines"),
     require("toast.plugins.modules.lsp.lsp-saga"),
     require("toast.plugins.modules.lsp.trouble"),
     require("toast.plugins.modules.lsp.cmdline"),
-    require("toast.plugins.modules.lsp.lsp-signature"),
+    require("toast.plugins.modules.lsp.misc"),
 }
