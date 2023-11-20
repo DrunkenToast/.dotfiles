@@ -11,7 +11,7 @@ pp() {
     local FOLDER=$(
         echo "${FOLDERS}" | fzf --preview "
             onefetch '${PROJECTS}{}' 2>/dev/null;
-            exa -l '${PROJECTS}{}';
+            eza -l '${PROJECTS}{}';
             bat --color always '${PROJECTS}{}/README.md' 2>/dev/null
         "
     )

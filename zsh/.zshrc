@@ -18,6 +18,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# Rust
+source "$HOME/.cargo/env"
+
 # Source all cfgs
 for rc in ~/.config/zsh/*; do
     if [ -f "$rc" ]; then

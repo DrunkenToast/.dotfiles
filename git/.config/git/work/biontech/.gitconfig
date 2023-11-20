@@ -1,0 +1,4 @@
+[core]
+    sshCommand = ssh -i ~/.ssh/id_rsa_work
+[user]
+	email = peter.leconte@external.biontech.de

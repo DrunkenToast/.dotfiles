@@ -13,6 +13,7 @@ opt.ignorecase = true
 opt.errorbells = false
 opt.wrap = false
 opt.cursorline = true
+opt.smartcase = true
 
 opt.laststatus = 2
 opt.showmode = false
