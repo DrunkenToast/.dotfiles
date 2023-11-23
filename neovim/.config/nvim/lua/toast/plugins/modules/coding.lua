@@ -26,7 +26,7 @@ return {
     {
         "stevearc/conform.nvim",
         event = { 'BufReadPost', 'BufNewFile' },
-        opts = {
+        config = function()
             -- TODO: change <leader>bf to use conform if available and
             -- fall back to lsp format
             -- TODO: Setup ESLINT
@@ -39,6 +39,7 @@ return {
                     astro = { { "prettierd", "prettier" } },
                     json = { { "prettierd", "prettier" } },
                     html = { { "prettierd", "prettier" } },
+                    lua = { "luaformatter" },
                     -- sql = { "sql_formatter" },
                 },
                 format_on_save = {
@@ -69,6 +70,7 @@ return {
                 end
                 require("conform").format({ async = true, lsp_fallback = true, range = range })
             end, { range = true })
+        end
     },
 
     -- TODO highlighting and browsing
