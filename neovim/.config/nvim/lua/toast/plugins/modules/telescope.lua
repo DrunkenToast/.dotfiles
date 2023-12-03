@@ -116,13 +116,6 @@ return {
             },
         },
         config = function()
-            -- Workaround for telescope folding
-            -- https://github.com/nvim-telescope/telescope.nvim/issues/699
-            vim.api.nvim_create_autocmd({ "BufEnter" }, {
-                pattern = { "*" },
-                command = "normal zx zR",
-            })
-
             require('telescope').setup {
                 defaults = {
                     layout_strategy = "vertical",

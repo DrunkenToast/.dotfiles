@@ -51,6 +51,7 @@ return {
 
             lsp_zero.preset('recommended')
 
+            --- Mason {{{
             require('mason').setup({}) -- TODO check this
             require('mason-lspconfig').setup({
                 ensure_installed =
@@ -75,10 +76,12 @@ return {
                     end
                 },
             })
+            --}}}
 
-            -- Godot
+            -- Godot {{{
             vim.fn.setenv('GDScript_Port', 6005)
             lsp_zero.configure('gdscript', { force_setup = true })
+            --- }}}
 
             local cmp_config = lsp_zero.defaults.cmp_config({
                 mapping = {
@@ -112,8 +115,6 @@ return {
                 function(client, bufnr)
                     lsp_zero.default_keymaps({ buffer = bufnr })
                     local opts = { remap = false, silent = true, buffer = bufnr }
-                    -- Enable completion triggered by <c-x><c-o>
-                    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
                     -- vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)

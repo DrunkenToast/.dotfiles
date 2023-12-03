@@ -23,6 +23,13 @@ return {
                 dim_inactive = false,
                 transparent_mode = false,
             })
+            vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+                pattern = { "*" },
+                callback = function()
+                    vim.api.nvim_set_hl(0, "DiffText", { fg = "#282828", bg = "#83a598" })
+                end,
+            }
+            )
         end
     },
     {
@@ -40,5 +47,10 @@ return {
     {
         'AlexvZyl/nordic.nvim',
     },
-    { "savq/melange-nvim" }
+    {
+        'sainnhe/gruvbox-material',
+    },
+    {
+        "savq/melange-nvim"
+    }
 }
