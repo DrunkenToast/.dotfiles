@@ -10,3 +10,4 @@
     idc = !git commit -am \"$(curl -s https://whatthecommit.com/index.txt)\"
     good = !tldr git
     test = !git checkout \"$(git branch | fzf --preview='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)" {}')\"
+    gb = !git checkout \"$(git ls-remote --heads origin | awk -F'refs/heads/' '{print $NF}' | fzf --preview='git cherry -v --abbrev {1} main')\"

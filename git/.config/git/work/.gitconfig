@@ -7,3 +7,5 @@
 	defaultBranch = main
 [includeIf "gitdir:~/projects/work/biontech/"]
     path = ~/.config/git/work/biontech/.gitconfig
+[includeIf "gitdir:~/projects/work/haystack/"]
+    path = ~/.config/git/work/haystack/.gitconfig
