@@ -31,6 +31,8 @@ return {
             -- Rust tools
             { 'simrat39/rust-tools.nvim' },
 
+            -- csharp omnisharp extension for textDocument/definition
+            { "Hoffs/omnisharp-extended-lsp.nvim" }
             -- -- For certain keybinds
             -- { "glepnir/lspsaga.nvim" },
         },
@@ -73,7 +75,21 @@ return {
                                 end
                             }
                         })
-                    end
+                    end,
+                    omnisharp = function()
+                        local pid = vim.fn.getpid()
+
+                        require('lspconfig').omnisharp.setup({
+                            cmd_env = {
+                                DOTNET_ROOT = '/usr/local/share/dotnet',
+                                PATH = '/usr/local/share/dotnet' .. ':' .. vim.env.PATH,
+                            },
+                            cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(pid) },
+                            handlers = {
+                                ["textDocument/definition"] = require('omnisharp_extended').handler,
+                            },
+                        })
+                    end,
                 },
             })
             --}}}
