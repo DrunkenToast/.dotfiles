@@ -26,7 +26,7 @@ return {
             vim.api.nvim_create_autocmd({ "ColorScheme" }, {
                 pattern = { "*" },
                 callback = function()
-                    vim.api.nvim_set_hl(0, "DiffText", { fg = "#282828", bg = "#83a598" })
+                    vim.api.nvim_set_hl(0, "DiffText", { bg = "#7e535f" })
                 end,
             }
             )
