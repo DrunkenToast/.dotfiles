@@ -32,6 +32,7 @@ return {
                     }
                 }
 
+                --- JS {{{
                 for _, language in ipairs({ "typescript", "javascript", "svelte" }) do
                     require("dap").configurations[language] = {
                         -- attach to a node process that has been started with
@@ -87,7 +88,26 @@ return {
                         } or nil,
                     }
                 end
+                --- }}}
 
+                --- C# {{{
+                dap.adapters.coreclr = {
+                    type = 'executable',
+                    command = 'DOTNET_ROOT=/usr/local/share/dotnet/x64 netcoredbg',
+                    args = { '--interpreter=vscode' }
+                }
+
+                dap.configurations.cs = {
+                    {
+                        type = "coreclr",
+                        name = "launch - netcoredbg",
+                        request = "launch",
+                        program = function()
+                            return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+                        end,
+                    },
+                }
+                --- }}}
 
                 local dapui = require("dapui")
                 dapui.setup()

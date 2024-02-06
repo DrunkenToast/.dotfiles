@@ -84,6 +84,8 @@ return {
                         })
                     end,
                     omnisharp = function()
+                        -- vim.env.DOTNET_ROOT = '/usr/local/share/dotnet'
+                        -- vim.env.PATH = vim.env.PATH .. ':' .. vim.env.DOTNET_ROOT
                         local pid = vim.fn.getpid()
 
                         require('lspconfig').omnisharp.setup({

@@ -32,6 +32,10 @@ return {
             -- TODO: Setup ESLINT
             require("conform").setup({
                 formatters_by_ft = {
+                    lua = { "luaformatter" },
+                    csharp = { "csharpier" },
+                    cs = { "csharpier" },
+                    -- sql = { "sql_formatter" },
                     javascript = { { "prettierd", "prettier" } },
                     vue = { { "prettierd", "prettier" } },
                     typescript = { { "prettierd", "prettier" } },
@@ -39,8 +43,6 @@ return {
                     astro = { { "prettierd", "prettier" } },
                     json = { { "prettierd", "prettier" } },
                     html = { { "prettierd", "prettier" } },
-                    lua = { "luaformatter" },
-                    -- sql = { "sql_formatter" },
                 },
                 format_on_save = {
                     -- These options will be passed to conform.format()

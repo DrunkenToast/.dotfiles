@@ -35,3 +35,7 @@ for rc in ~/.config/zsh/*; do
 done
 
 eval "$(starship init zsh)"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
