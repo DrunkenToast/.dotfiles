@@ -11,6 +11,9 @@ source /usr/share/nvm/init-nvm.sh
 
 export PATH=$PATH:$HOME/.cargo/bin/
 
+export EDITOR='nvim'
+export VISUAL='nvim'
+
 # ionic dev
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin

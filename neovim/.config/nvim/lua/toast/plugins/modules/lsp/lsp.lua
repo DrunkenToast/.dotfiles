@@ -72,8 +72,15 @@ return {
                                 on_attach = function(_, bufnr)
                                     vim.keymap.set('n', 'K', rt.hover_actions.hover_actions,
                                         { buffer = bufnr })
-                                end
-                            }
+                                end,
+                                settings = {
+                                    ["rust-analyzer"] = {
+                                        cargo = {
+                                            allFeatures = true,
+                                        },
+                                    },
+                                },
+                            },
                         })
                     end,
                     omnisharp = function()
