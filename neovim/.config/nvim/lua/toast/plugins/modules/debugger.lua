@@ -93,11 +93,22 @@ return {
                 --- C# {{{
                 dap.adapters.coreclr = {
                     type = 'executable',
-                    command = 'DOTNET_ROOT=/usr/local/share/dotnet/x64 netcoredbg',
+                    command = 'netcoredbg',
                     args = { '--interpreter=vscode' }
                 }
 
                 dap.configurations.cs = {
+                    {
+                        type = "coreclr",
+                        name = "Attach - netcoredbg",
+                        request = "attach",
+                        processId = function()
+                            return require('dap.utils').pick_process()
+                        end,
+                        -- program = function()
+                        --     return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+                        -- end,
+                    },
                     {
                         type = "coreclr",
                         name = "launch - netcoredbg",

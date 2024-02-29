@@ -90,8 +90,8 @@ return {
 
                         require('lspconfig').omnisharp.setup({
                             cmd_env = {
-                                DOTNET_ROOT = '/usr/local/share/dotnet',
-                                PATH = '/usr/local/share/dotnet' .. ':' .. vim.env.PATH,
+                                -- DOTNET_ROOT = '/usr/local/share/dotnet',
+                                -- PATH = '/usr/local/share/dotnet' .. ':' .. vim.env.PATH,
                             },
                             cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(pid) },
                             handlers = {
