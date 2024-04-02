@@ -1,0 +1,16 @@
+*.docx diff=pandoc
+
+*.jpg diff=exiftool
+*.jpeg diff=exiftool
+*.png diff=exiftool
+*.gif diff=exiftool
+*.bmp diff=exiftool
+*.tiff diff=exiftool
+*.tif diff=exiftool
+*.raw diff=exiftool
+*.cr2 diff=exiftool
+*.nef diff=exiftool
+*.arw diff=exiftool
+*.orf diff=exiftool
+*.srw diff=exiftool
+*.dng diff=exiftool

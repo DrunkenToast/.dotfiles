@@ -7,9 +7,10 @@
 #
 # PS1='[\u@\h \W]\$ '
 
+# Default on MacOS is 256, not enough!
+ulimit -n 10240
 
 export PATH="$VOLTA_HOME/bin:$PATH"
-
 # export DOTNET_ROOT=/usr/local/share/dotnet
 # export PATH=$DOTNET_ROOT:$PATH
 # export DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER=true

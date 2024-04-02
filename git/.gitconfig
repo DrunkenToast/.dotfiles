@@ -4,9 +4,12 @@
     path = ~/.config/git/personal/.gitconfig
 [includeIf "gitdir:~/projects/work/"]
     path = ~/.config/git/work/.gitconfig
+[include]
+    path = ~/.config/git/attr/.gitconfig
 [alias]
     lc = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
     lg = log --graph --abbrev-commit --decorate --date=format:'%b %d %Y - %H:%M' --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+    pushfl = push --force-with-lease
     idc = !git commit -am \"$(curl -s https://whatthecommit.com/index.txt)\"
     good = !tldr git
     test = !git checkout \"$(git branch | fzf --preview='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)" {}')\"

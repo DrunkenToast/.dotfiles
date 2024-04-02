@@ -1,0 +1,6 @@
+[diff "pandoc"]
+    textconv=pandoc --to=markdown
+    prompt = false
+[diff "exiftool"]
+    textconv=exiftool -s -ImageWidth -ImageHeight -FileType -FileSize -DateTimeOriginal -Make -Model -LensID -ApertureValue -ExposureTime -ISO -FocalLength -GPSLatitude -GPSLongitude -GPSAltitude -GPSDateTime -Orientation -ExposureMode -MeteringMode -Flash -Software -XResolution -YResolution -ResolutionUnit -Artist -Copyright -Description -Keywords -Rating
+    prompt = false

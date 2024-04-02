@@ -3,7 +3,7 @@ return {
     "mfussenegger/nvim-dap",
 
     dependencies = {
-
+        "nvim-neotest/nvim-nio",
         -- fancy UI for the debugger
         "mxsdev/nvim-dap-vscode-js",
         {

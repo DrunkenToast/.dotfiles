@@ -43,6 +43,21 @@ return {
         }
     },
 
+    -- Twilight
+    {
+        'folke/twilight.nvim',
+        opts = {},
+        keys = {
+            {
+                "<leader>z",
+                "<cmd>Twilight<CR>",
+                desc = 'Twilight, dim inactive portions of code you\'re editing',
+                noremap = true,
+                silent = true
+            },
+        }
+    },
+
     -- Highlight colors
     {
         'NvChad/nvim-colorizer.lua',

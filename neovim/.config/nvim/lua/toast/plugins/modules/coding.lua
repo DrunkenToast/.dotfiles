@@ -90,7 +90,7 @@ return {
             },
             search = {
                 -- Matches with "TODO: something" and "TODO @PL something"
-                pattern = [[\b(KEYWORDS)\s*[:@]\b]], -- ripgrep regex
+                pattern = [[\b(KEYWORDS)(:?:|\s+@\w+)]], -- ripgrep regex
             }
         },
         keys = {
