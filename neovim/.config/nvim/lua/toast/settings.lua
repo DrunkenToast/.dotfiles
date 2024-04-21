@@ -6,7 +6,7 @@ opt.termguicolors = true
 
 -- General
 opt.compatible = false
-opt.colorcolumn = "80"
+opt.colorcolumn = '100'
 opt.signcolumn = 'yes' -- Figure out to make line number colored for W/E...
 opt.hlsearch = false
 opt.ignorecase = true
@@ -41,14 +41,14 @@ opt.foldlevel = 999
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
-    opt.foldmethod = "expr"
-    opt.foldexpr = "nvim_treesitter#foldexpr()"
+	opt.foldmethod = "expr"
+	opt.foldexpr = "nvim_treesitter#foldexpr()"
 else
-    opt.foldmethod = "indent"
+	opt.foldmethod = "indent"
 end
 
 if vim.fn.has("nvim-0.10") == 1 then
-    opt.smoothscroll = true
+	opt.smoothscroll = true
 end
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable

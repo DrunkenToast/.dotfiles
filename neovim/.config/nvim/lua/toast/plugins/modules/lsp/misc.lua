@@ -29,11 +29,4 @@ return {
             require("lsp_lines").setup()
         end,
     },
-    -- {
-    --     'dgagn/diagflow.nvim',
-    --     event = 'LspAttach',
-    --     opts = {
-    --
-    --     }
-    -- }
 }

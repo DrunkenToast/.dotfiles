@@ -43,7 +43,9 @@ return {
                     astro = { { "prettierd", "prettier" } },
                     json = { { "prettierd", "prettier" } },
                     html = { { "prettierd", "prettier" } },
-                    --
+                    css = { { "prettierd", "prettier" } },
+                    scss = { { "prettierd", "prettier" } },
+                    sass = { { "prettierd", "prettier" } },
                     gdscript = { "gdformat" },
                 },
                 format_on_save = {
