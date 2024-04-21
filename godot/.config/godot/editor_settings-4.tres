@@ -11,17 +11,17 @@ text_editor/theme/highlighting/control_flow_keyword_color = Color(1, 0.55, 0.8, 
 text_editor/theme/highlighting/base_type_color = Color(0.26, 1, 0.76, 1)
 text_editor/theme/highlighting/engine_type_color = Color(0.56, 1, 0.86, 1)
 text_editor/theme/highlighting/user_type_color = Color(0.78, 1, 0.93, 1)
-text_editor/theme/highlighting/comment_color = Color(0.808824, 0.804902, 0.802941, 0.5)
+text_editor/theme/highlighting/comment_color = Color(0.808823, 0.804902, 0.802941, 0.5)
 text_editor/theme/highlighting/doc_comment_color = Color(0.6, 0.7, 0.8, 0.8)
 text_editor/theme/highlighting/string_color = Color(1, 0.93, 0.63, 1)
 text_editor/theme/highlighting/background_color = Color(0.129412, 0.120784, 0.116471, 1)
 text_editor/theme/highlighting/completion_background_color = Color(0.235294, 0.219608, 0.211765, 1)
 text_editor/theme/highlighting/completion_selected_color = Color(1, 1, 1, 0.07)
 text_editor/theme/highlighting/completion_existing_color = Color(1, 1, 1, 0.14)
-text_editor/theme/highlighting/completion_font_color = Color(0.808824, 0.804902, 0.802941, 1)
-text_editor/theme/highlighting/text_color = Color(0.808824, 0.804902, 0.802941, 1)
-text_editor/theme/highlighting/line_number_color = Color(0.808824, 0.804902, 0.802941, 0.5)
-text_editor/theme/highlighting/safe_line_number_color = Color(0.808824, 0.965882, 0.802941, 0.75)
+text_editor/theme/highlighting/completion_font_color = Color(0.808823, 0.804902, 0.802941, 1)
+text_editor/theme/highlighting/text_color = Color(0.808823, 0.804902, 0.802941, 1)
+text_editor/theme/highlighting/line_number_color = Color(0.808823, 0.804902, 0.802941, 0.5)
+text_editor/theme/highlighting/safe_line_number_color = Color(0.808823, 0.965882, 0.802941, 0.75)
 text_editor/theme/highlighting/caret_color = Color(1, 1, 1, 1)
 text_editor/theme/highlighting/selection_color = Color(0.721569, 0.733333, 0.14902, 0.4)
 text_editor/theme/highlighting/brace_mismatch_color = Color(1, 0.47, 0.42, 1)
@@ -151,10 +151,14 @@ text_editor/theme/highlighting/comment_markers/notice_list = "INFO,NOTE,NOTICE,T
 text_editor/help/sort_functions_alphabetically = true
 metadata/script_setup_templates_dictionary = {
 "Area2D": "0NodeDefault",
+"CamZone": "0NodeDefault",
 "Camera2D": "0NodeDefault",
 "CanvasLayer": "0NodeDefault",
 "CharacterBody2D": "0CharacterBody2DBasic Movement",
+"CollisionShape2D": "0NodeDefault",
 "Control": "0NodeDefault",
+"MarginContainer": "0NodeDefault",
 "Node": "0NodeDefault",
-"Node2D": "0NodeDefault"
+"Node2D": "0NodeDefault",
+"Node3D": "0NodeDefault"
 }

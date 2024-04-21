@@ -43,6 +43,8 @@ return {
                     astro = { { "prettierd", "prettier" } },
                     json = { { "prettierd", "prettier" } },
                     html = { { "prettierd", "prettier" } },
+                    --
+                    gdscript = { "gdformat" },
                 },
                 format_on_save = {
                     -- These options will be passed to conform.format()
