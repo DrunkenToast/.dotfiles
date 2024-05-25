@@ -47,6 +47,7 @@ return {
                     scss = { { "prettierd", "prettier" } },
                     sass = { { "prettierd", "prettier" } },
                     gdscript = { "gdformat" },
+                    nix = { "nixpkgs-fmt" },
                 },
                 format_on_save = {
                     -- These options will be passed to conform.format()
@@ -61,6 +62,12 @@ return {
                     timeout_ms = 500,
                     lsp_fallback = true,
                 },
+                formatters = {
+                    ["nixpkgs-fmt"] = {
+                        command = "nixpkgs-fmt",
+                        prepend_args = {}
+                    }
+                }
             })
 
 
