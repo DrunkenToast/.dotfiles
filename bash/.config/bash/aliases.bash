@@ -32,3 +32,11 @@ fkill() {
     fi
 }
 
+port-kill() {
+    local pid
+    pid=$(lsof -i -P | egrep 'TCP.*LISTEN|UDP' | awk '{print $2 " " $1 " "  $8 " " $9 " " $NF}' | sort -n | fzf -m | awk '{print $1}')
+    echo "Killing $pid"
+    if [ "x$pid" != "x" ]; then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}

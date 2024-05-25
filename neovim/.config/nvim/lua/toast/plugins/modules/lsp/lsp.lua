@@ -108,7 +108,6 @@ return {
                             :get_install_path()
                             .. '/node_modules/@vue/language-server'
                             .. '/node_modules/@vue/typescript-plugin'
-                        print(vue_typescript_plugin)
 
                         require('lspconfig').tsserver.setup({
                             init_options = {
