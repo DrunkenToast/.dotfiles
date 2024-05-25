@@ -2,6 +2,8 @@ return {
     {
         'stevearc/oil.nvim',
         opts = {},
+        -- TODO: see issue https://github.com/stevearc/oil.nvim/issues/355
+        tag = 'v2.8.0',
         dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
             { "\\", "<cmd>lua require('oil').toggle_float()<cr>", desc = "oil - File tree explorer" },
