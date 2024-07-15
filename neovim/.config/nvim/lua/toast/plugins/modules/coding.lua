@@ -91,7 +91,8 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim",
         },
         cmd = { "TodoTrouble", "TodoTelescope" },
         -- NOTE: https://github.com/LazyVim/LazyVim/discussions/1583
@@ -108,7 +109,7 @@ return {
         keys = {
             {
                 "<leader>xt",
-                '<CMD>TodoTrouble<CR>',
+                '<CMD>Trouble todo toggle<CR>',
                 desc = "Open todos in Trouble",
                 noremap = true,
                 silent = true
