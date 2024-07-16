@@ -41,3 +41,8 @@ eval "$(starship init zsh)"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+
+#direnv
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
