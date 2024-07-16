@@ -78,6 +78,11 @@ return {
                                         cargo = {
                                             allFeatures = true,
                                         },
+                                        procMacro = {
+                                            ignored = {
+                                                ['napi-derive'] = { 'napi' },
+                                            },
+                                        }
                                     },
                                 },
                             },

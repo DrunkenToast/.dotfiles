@@ -61,6 +61,7 @@ return {
                     -- end,
                     timeout_ms = 500,
                     lsp_fallback = true,
+                    quiet = true,
                 },
                 formatters = {
                     ["nixpkgs-fmt"] = {
