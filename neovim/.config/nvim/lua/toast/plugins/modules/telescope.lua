@@ -101,7 +101,7 @@ return {
 
             -- Treesitter
             {
-                '<leader>s',
+                '<leader>ss',
                 '<cmd>lua require("telescope.builtin").treesitter()<cr>',
                 desc = 'Lists Function names, variables, from Treesitter',
                 noremap = true,
