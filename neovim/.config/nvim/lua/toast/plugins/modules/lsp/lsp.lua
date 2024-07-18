@@ -32,9 +32,9 @@ return {
             { 'simrat39/rust-tools.nvim' },
 
             -- csharp omnisharp extension for textDocument/definition
-            { "Hoffs/omnisharp-extended-lsp.nvim" }
+            { "Hoffs/omnisharp-extended-lsp.nvim" },
             -- -- For certain keybinds
-            -- { "glepnir/lspsaga.nvim" },
+            { "glepnir/lspsaga.nvim" },
         },
         config = function()
             -- If you want icons for diagnostic errors, you'll need to define them somewhere:
