@@ -5,6 +5,7 @@ return {
         opts =
         {
             focus = true,
+            pinned = true,
             preview = {
                 type = "split",
                 relative = "win",

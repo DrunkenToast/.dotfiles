@@ -10,15 +10,31 @@ return
         ft = { "markdown" },
     },
     {
-        "Zeioth/markmap.nvim",
-        build = "npm i -g markmap-cli",
-        cmd = { "MarkmapOpen", "MarkmapSave", "MarkmapWatch", "MarkmapWatchStop" },
-        opts = {
-            html_output = "/tmp/markmap.html", -- (default) Setting a empty string "" here means: [Current buffer path].html
-            hide_toolbar = false,              -- (default)
-            grace_period = 3600000             -- (default) Stops markmap watch after 60 minutes. Set it to 0 to disable the grace_period.
+        "epwalsh/obsidian.nvim",
+        version = "*", -- recommended, use latest release instead of latest commit
+        lazy = true,
+        ft = "markdown",
+        -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+        -- event = {
+        --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+        --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+        --   "BufReadPre path/to/my-vault/**.md",
+        --   "BufNewFile path/to/my-vault/**.md",
+        -- },
+        dependencies = {
+            -- Required.
+            "nvim-lua/plenary.nvim",
         },
-        config = function(_, opts) require("markmap").setup(opts) end
-    },
-
+        opts = {
+            workspaces = {
+                {
+                    name = "personal",
+                    path = "~/projects/personal/notes",
+                },
+            },
+            ui = {
+                enable = false
+            }
+        },
+    }
 }
