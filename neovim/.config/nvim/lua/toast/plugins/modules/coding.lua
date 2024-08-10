@@ -48,6 +48,7 @@ return {
                     sass = { { "prettierd", "prettier" } },
                     gdscript = { "gdformat" },
                     nix = { "nixpkgs-fmt" },
+                    -- markdown = { "prettierd", "prettier" },
                 },
                 format_on_save = {
                     -- These options will be passed to conform.format()
