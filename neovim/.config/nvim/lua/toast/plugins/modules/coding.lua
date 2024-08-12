@@ -30,22 +30,23 @@ return {
             -- TODO: change <leader>bf to use conform if available and
             -- fall back to lsp format
             -- TODO: Setup ESLINT
+            local prettierConf = { "prettierd", "prettier", stop_after_first = true }
             require("conform").setup({
                 formatters_by_ft = {
                     lua = { "luaformatter" },
                     csharp = { "csharpier" },
                     cs = { "csharpier" },
                     -- sql = { "sql_formatter" },
-                    javascript = { { "prettierd", "prettier" } },
-                    vue = { { "prettierd", "prettier" } },
-                    typescript = { { "prettierd", "prettier" } },
-                    typescriptreact = { { "prettierd", "prettier" } },
-                    astro = { { "prettierd", "prettier" } },
-                    json = { { "prettierd", "prettier" } },
-                    html = { { "prettierd", "prettier" } },
-                    css = { { "prettierd", "prettier" } },
-                    scss = { { "prettierd", "prettier" } },
-                    sass = { { "prettierd", "prettier" } },
+                    javascript = prettierConf,
+                    vue = prettierConf,
+                    typescript = prettierConf,
+                    typescriptreact = prettierConf,
+                    astro = prettierConf,
+                    json = prettierConf,
+                    html = prettierConf,
+                    css = prettierConf,
+                    scss = prettierConf,
+                    sass = prettierConf,
                     gdscript = { "gdformat" },
                     nix = { "nixpkgs-fmt" },
                     -- markdown = { "prettierd", "prettier" },
