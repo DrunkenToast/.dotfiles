@@ -7,6 +7,9 @@
 #
 # PS1='[\u@\h \W]\$ '
 
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
 # Default on MacOS is 256, not enough!
 ulimit -n 10240
 
