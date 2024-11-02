@@ -19,6 +19,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # export DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER=true
 export ASPNETCORE_ENVIRONMENT=Development
 export PATH="$PATH:/Users/peter/.dotnet/tools"
+export PATH="$PATH:/Users/peter/fvm/default/bin"
 
 export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
 
@@ -49,3 +50,9 @@ source <(ng completion script)
 #direnv
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/peter/.dart-cli-completion/zsh-config.zsh ]] && . /Users/peter/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

@@ -49,6 +49,7 @@ return {
                     sass = prettierConf,
                     gdscript = { "gdformat" },
                     nix = { "nixpkgs-fmt" },
+                    -- dart = { "dart_format" },
                     -- markdown = { "prettierd", "prettier" },
                 },
                 format_on_save = {
