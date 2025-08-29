@@ -9,3 +9,5 @@
     path = ~/.config/git/work/biontech/.gitconfig
 [includeIf "gitdir:~/projects/work/haystack/"]
     path = ~/.config/git/work/haystack/.gitconfig
+[includeIf "gitdir:~/projects/work/vialis/"]
+    path = ~/.config/git/work/vialis/.gitconfig

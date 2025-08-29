@@ -1,0 +1,19 @@
+{
+    "Vue Component Template": {
+        "scope": "vue",
+        "prefix": "vcomp",
+        "body": [
+            "<script setup lang=\"ts\">",
+            "\t$0",
+            "</script>",
+            "",
+            "<template>",
+            "\t<div>$1</div>",
+            "</template>",
+            "",
+            "<style scoped lang=\"scss\">$2",
+            "</style>"
+        ],
+        "description": "Base component template for Vue 3 with script setup, TypeScript and scoped SCSS"
+    }
+}

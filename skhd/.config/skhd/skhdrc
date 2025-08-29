@@ -1,0 +1,38 @@
+cmd - q : yabai -m window --close
+
+# Focus & swap spaces
+cmd - 0x12 : yabai -m space --focus 1
+cmd - 0x13 : yabai -m space --focus 2
+cmd - 0x14 : yabai -m space --focus 3
+cmd - 0x15 : yabai -m space --focus 4
+cmd - 0x17 : yabai -m space --focus 5
+cmd - 0x16 : yabai -m space --focus 6
+cmd - 0x1A : yabai -m space --focus 7
+cmd - 0x1C : yabai -m space --focus 8
+cmd - 0x19 : yabai -m space --focus 9
+cmd - 0x1D : yabai -m space --focus 10
+
+
+cmd + shift - 0x12 : yabai -m window --space 1
+cmd + shift - 0x13 : yabai -m window --space 2
+cmd + shift - 0x14 : yabai -m window --space 3
+cmd + shift - 0x15 : yabai -m window --space 4
+cmd + shift - 0x17 : yabai -m window --space 5
+cmd + shift - 0x16 : yabai -m window --space 6
+cmd + shift - 0x1A : yabai -m window --space 7
+cmd + shift - 0x1C : yabai -m window --space 8
+cmd + shift - 0x19 : yabai -m window --space 9
+cmd + shift - 0x1D : yabai -m window --space 10
+
+
+
+# Focus & swap windows
+cmd - h : yabai -m window --focus west
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+cmd - l : yabai -m window --focus east
+
+cmd + shift - h : yabai -m window --swap west
+cmd + shift - j : yabai -m window --swap south
+cmd + shift - k : yabai -m window --swap north
+cmd + shift - l : yabai -m window --swap east

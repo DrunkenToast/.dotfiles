@@ -30,7 +30,8 @@ return {
             -- TODO: change <leader>bf to use conform if available and
             -- fall back to lsp format
             -- TODO: Setup ESLINT
-            local prettierConf = { "prettierd", "prettier", stop_after_first = true }
+            -- TODO: Put back to prettierd
+            local prettierConf = { "prettier", "prettierd", stop_after_first = true }
             require("conform").setup({
                 formatters_by_ft = {
                     lua = { "luaformatter" },

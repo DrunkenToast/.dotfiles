@@ -26,9 +26,15 @@ export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+export NDK_HOME="/Users/peter/Library/Android/sdk/ndk/27.0.12077973"
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Rust
 source "$HOME/.cargo/env"
@@ -44,7 +50,7 @@ eval "$(starship init zsh)"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
 
 
 #direnv
@@ -53,6 +59,11 @@ eval "$(direnv hook zsh)"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/peter/.dart-cli-completion/zsh-config.zsh ]] && . /Users/peter/.dart-cli-completion/zsh-config.zsh || true
+# [[ -f /Users/peter/.dart-cli-completion/zsh-config.zsh ]] && . /Users/peter/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+
+eval "$(rbenv init - --no-rehash zsh)"
+
+# Created by `pipx` on 2025-08-11 09:30:02
+export PATH="$PATH:/Users/peter/.local/bin"

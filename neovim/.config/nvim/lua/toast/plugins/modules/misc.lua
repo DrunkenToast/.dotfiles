@@ -13,7 +13,7 @@ return {
             --
             -- })
 
-            require('lualine').setup {
+            require('lualine').setup({
                 options = {
                     theme = 'gruvbox',
                     component_separators = '|',
@@ -25,7 +25,7 @@ return {
                     lualine_c = { 'branch', 'diff', 'diagnostics' },
                     lualine_x = { 'filetype' }
                 }
-            }
+            })
         end
     },
 
@@ -79,7 +79,8 @@ return {
                 },
                 user_default_options = {
                     tailwind = 'lsp',
-                    sass = { enable = true },
+                    sass = { enable = false, parsers = { "css" } },
+                    names = false
                 },
             })
         end

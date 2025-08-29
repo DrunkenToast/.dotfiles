@@ -1,5 +1,7 @@
 [pull]
 	rebase = true
+[include]
+    path = ~/.config/git/work/.gitconfig
 [includeIf "gitdir:~/projects/personal/"]
     path = ~/.config/git/personal/.gitconfig
 [includeIf "gitdir:~/projects/work/"]

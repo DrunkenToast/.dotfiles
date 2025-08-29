@@ -20,6 +20,9 @@ return {
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-nvim-lua' },
+
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+
             { 'saadparwaiz1/cmp_luasnip' },
 
             -- Snippets
@@ -37,20 +40,35 @@ return {
             { "glepnir/lspsaga.nvim" },
         },
         config = function()
-            -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-            vim.fn.sign_define("DiagnosticSignError",
-                { text = " ", texthl = "DiagnosticSignError" })
-            vim.fn.sign_define("DiagnosticSignWarn",
-                { text = " ", texthl = "DiagnosticSignWarn" })
-            vim.fn.sign_define("DiagnosticSignInfo",
-                { text = " ", texthl = "DiagnosticSignInfo" })
-            vim.fn.sign_define("DiagnosticSignHint",
-                { text = "", texthl = "DiagnosticSignHint" })
+            -- -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+            -- vim.fn.sign_define("DiagnosticSignError",
+            --     { text = " ", texthl = "DiagnosticSpfignError" })
+            -- vim.fn.sign_define("DiagnosticSignWarn",
+            --     { text = " ", texthl = "DiagnosticSignWarn" })
+            -- vim.fn.sign_define("DiagnosticSignInfo",
+            --     { text = " ", texthl = "DiagnosticSignInfo" })
+            -- vim.fn.sign_define("DiagnosticSignHint",
+            --     { text = "", texthl = "DiagnosticSignHint" })
+
+            local sev = vim.diagnostic.severity
+            vim.diagnostic.config {
+                signs = {
+                    text = {
+                        [sev.ERROR] = "",
+                        [sev.WARN] = "",
+                        [sev.INFO] = "",
+                        [sev.HINT] = "",
+                    },
+                    numhl = {
+                        [sev.ERROR] = 'WarningMsg',
+                    },
+                },
+                underline = true,
+            }
 
             local lsp_zero = require('lsp-zero')
             local lsp_kind = require('lspkind')
             local cmp = require('cmp')
-
             lsp_zero.preset('recommended')
 
             --- Mason {{{
@@ -139,6 +157,20 @@ return {
             })
             --}}}
 
+
+            -- Swift {{{
+            local lspconfig = require('lspconfig')
+            lspconfig.sourcekit.setup {
+                capabilities = {
+                    workspace = {
+                        didChangeWatchedFiles = {
+                            dynamicRegistration = true,
+                        },
+                    },
+                },
+            }
+            -- }}}
+
             -- Godot {{{
             vim.fn.setenv('GDScript_Port', 6005)
             lsp_zero.configure('gdscript', { force_setup = true })
@@ -155,8 +187,10 @@ return {
                     })
                 },
                 sources = {
+                    { name = 'luasnip' },
                     { name = 'nvim_lsp' },
                     { name = 'nvim_lua' }, -- nvim-cmp source for neovim Lua API
+                    { name = "nvim_lsp_signature_help" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "crates" }, -- For rust crates
@@ -191,8 +225,14 @@ return {
             lsp_zero.setup()
 
             require("luasnip.loaders.from_vscode").lazy_load({
-                --paths = snippets_paths(),
                 include = nil, -- Load all languages
+                exclude = {},
+            })
+
+            -- Custom snippets
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = { "./snippets" },
+                include = nil,
                 exclude = {},
             })
         end
