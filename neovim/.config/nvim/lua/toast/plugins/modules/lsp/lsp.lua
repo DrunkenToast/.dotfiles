@@ -40,17 +40,21 @@ return {
             { "glepnir/lspsaga.nvim" },
         },
         config = function()
-            local signs = {
-                Error = " ",
-                Warn  = " ",
-                Info  = " ",
-                Hint  = "",
+            local sev = vim.diagnostic.severity
+            vim.diagnostic.config {
+                signs = {
+                    text = {
+                        [sev.ERROR] = "",
+                        [sev.WARN] = "",
+                        [sev.INFO] = "",
+                        [sev.HINT] = "",
+                    },
+                    numhl = {
+                        [sev.ERROR] = 'WarningMsg',
+                    },
+                },
+                underline = true,
             }
-
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-            end
 
             local lsp_zero = require('lsp-zero')
             local lsp_kind = require('lspkind')
@@ -197,6 +201,7 @@ return {
                     end
                 end,
             }
+
             -- nvim 0.11 or above
             vim.lsp.config('vtsls', vtsls_config)
             vim.lsp.config('vue_ls', vue_ls_config)
