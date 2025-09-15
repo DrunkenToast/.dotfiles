@@ -1,4 +1,4 @@
-# #!/usr/bin/env bash
+# #!/usr/bin/env zsh
 local PROJECTS=/Users/peter/projects
 local COLLECTIONS="/work/haystack\n/work/biontech"
 
@@ -24,42 +24,29 @@ pps() {
     pp
     local SESSION_NAME=$(basename $PWD)
 
-    tmuxp load -y -s "$SESSION_NAME" . 2> /dev/null
-
-    if [ $? -ne 0 ]; then
-        tmuxp load -y -s "$SESSION_NAME" ~/.config/tmux/tmuxp/default-neovim-git.yaml
-    fi
+    ts $SESSION_NAME
 }
 
-# pps() {
-#     pp
-#     local SESSION_NAME=$(basename $PWD)
-#
-#     ts "$SESSION_NAME"
-# }
-#
-# TMUX session switcher
-# ts() {
-#     if [ -z $1 ]; then
-#         tmux switch-client -l
-#     else
-#         if [ -z "$TMUX" ]; then
-#             tmux new -As $1
-#             # tmux switch -t $1
-#         else
-#             if ! tmux has-session -t $1 2>/dev/null; then
-#                 TMUX=tmux new-session -ds $1
-#             fi
-#             tmux switch-client -t $1
-#         fi
-#     fi
-#
-#
-#     if ! tmux has-session -t $1 2>/dev/null; then
-#         TMUX= tmux new-session -ds $1
-#     fi
-#     tmux switch-client -t $1
-# }
+ts() {
+    if [ -z $1 ]; then
+        tmux switch-client -l
+    else
+        if [ -z "$TMUX" ]; then
+            tmux new -As $1
+        else
+            if ! tmux has-session -t $1 2>/dev/null; then
+                TMUX=tmux new-session -ds $1
+            fi
+            tmux switch-client -t $1
+        fi
+    fi
+
+
+    if ! tmux has-session -t $1 2>/dev/null; then
+        TMUX= tmux new-session -ds $1
+    fi
+    tmux switch-client -t $1
+}
 
 # tmux session tab complete function
 _tmux_complete_session() {

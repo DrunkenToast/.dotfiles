@@ -34,7 +34,6 @@ ts() {
     else
         if [ -z "$TMUX" ]; then
             tmux new -As $1
-            # tmux switch -t $1
         else
             if ! tmux has-session -t $1 2>/dev/null; then
                 TMUX=tmux new-session -ds $1
