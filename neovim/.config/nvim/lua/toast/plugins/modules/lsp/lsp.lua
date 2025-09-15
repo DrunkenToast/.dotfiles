@@ -40,31 +40,17 @@ return {
             { "glepnir/lspsaga.nvim" },
         },
         config = function()
-            -- -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-            -- vim.fn.sign_define("DiagnosticSignError",
-            --     { text = " ", texthl = "DiagnosticSpfignError" })
-            -- vim.fn.sign_define("DiagnosticSignWarn",
-            --     { text = " ", texthl = "DiagnosticSignWarn" })
-            -- vim.fn.sign_define("DiagnosticSignInfo",
-            --     { text = " ", texthl = "DiagnosticSignInfo" })
-            -- vim.fn.sign_define("DiagnosticSignHint",
-            --     { text = "", texthl = "DiagnosticSignHint" })
-
-            local sev = vim.diagnostic.severity
-            vim.diagnostic.config {
-                signs = {
-                    text = {
-                        [sev.ERROR] = "",
-                        [sev.WARN] = "",
-                        [sev.INFO] = "",
-                        [sev.HINT] = "",
-                    },
-                    numhl = {
-                        [sev.ERROR] = 'WarningMsg',
-                    },
-                },
-                underline = true,
+            local signs = {
+                Error = " ",
+                Warn  = " ",
+                Info  = " ",
+                Hint  = "",
             }
+
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+            end
 
             local lsp_zero = require('lsp-zero')
             local lsp_kind = require('lspkind')
@@ -76,10 +62,12 @@ return {
             require('mason-lspconfig').setup({
                 ensure_installed =
                 {
-                    'ts_ls',
+                    -- 'ts_ls',
                     'rust_analyzer',
                     'lua_ls',
                     'marksman',
+                    'vue_ls',
+                    'vtsls',
                 },
                 handlers = {
                     lsp_zero.default_setup,
@@ -122,40 +110,98 @@ return {
                             },
                         })
                     end,
-                    volar = function()
-                        require('lspconfig').volar.setup({})
+                    vue_ls = function()
                     end,
-                    ts_ls = function()
-                        local vue_typescript_plugin = require('mason-registry')
-                            .get_package('vue-language-server')
-                            :get_install_path()
-                            .. '/node_modules/@vue/language-server'
-                            .. '/node_modules/@vue/typescript-plugin'
-
-                        require('lspconfig').ts_ls.setup({
-                            init_options = {
-                                plugins = {
-                                    {
-                                        name = "@vue/typescript-plugin",
-                                        location = vue_typescript_plugin,
-                                        languages = { 'javascript', 'typescript', 'vue' }
-                                    },
-                                }
-                            },
-                            filetypes = {
-                                'javascript',
-                                'javascriptreact',
-                                'javascript.jsx',
-                                'typescript',
-                                'typescriptreact',
-                                'typescript.tsx',
-                                'vue',
-                            },
-                        })
-                    end,
+                    -- vtsls is used in favor for vue support
+                    -- ts_ls = function()
+                    --     -- local vue_typescript_plugin = require('mason-registry')
+                    --     --     .get_package('vue-language-server')
+                    --     --     :get_install_path()
+                    --     --     .. '/node_modules/@vue/language-server'
+                    --     --     .. '/node_modules/@vue/typescript-plugin'
+                    --
+                    --     require('lspconfig').ts_ls.setup({
+                    --         init_options = {
+                    --             -- plugins = {
+                    --             --     {
+                    --             --         name = "@vue/typescript-plugin",
+                    --             --         location = vue_typescript_plugin,
+                    --             --         languages = { 'javascript', 'typescript', 'vue' }
+                    --             --     },
+                    --             -- }
+                    --         },
+                    --         filetypes = {
+                    --             'javascript',
+                    --             'javascriptreact',
+                    --             'javascript.jsx',
+                    --             'typescript',
+                    --             'typescriptreact',
+                    --             'typescript.tsx',
+                    --             -- 'vue',
+                    --         },
+                    --     })
+                    -- end,
                 },
             })
             --}}}
+            --
+
+            -- Vue {{{
+            local vue_language_server_path = vim.fn.expand '$MASON/packages' ..
+                '/vue-language-server' .. '/node_modules/@vue/language-server'
+            local vue_plugin = {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+                configNamespace = 'typescript',
+            }
+
+            local vtsls_config = {
+                settings = {
+                    vtsls = {
+                        tsserver = {
+                            globalPlugins = {
+                                vue_plugin,
+                            },
+                        },
+                    },
+                },
+                filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            }
+
+            local vue_ls_config = {
+                on_init = function(client)
+                    client.handlers['tsserver/request'] = function(_, result, context)
+                        local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
+                        if #clients == 0 then
+                            vim.notify('Could not found `vtsls` lsp client, vue_lsp would not work without it.',
+                                vim.log.levels.ERROR)
+                            return
+                        end
+                        local ts_client = clients[1]
+
+                        local param = unpack(result)
+                        local id, command, payload = unpack(param)
+                        ts_client:exec_cmd({
+                            title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+                            command = 'typescript.tsserverRequest',
+                            arguments = {
+                                command,
+                                payload,
+                            },
+                        }, { bufnr = context.bufnr }, function(_, r)
+                            local response_data = { { id, r.body } }
+                            ---@diagnostic disable-next-line: param-type-mismatch
+                            client:notify('tsserver/response', response_data)
+                        end)
+                    end
+                end,
+            }
+            -- nvim 0.11 or above
+            vim.lsp.config('vtsls', vtsls_config)
+            vim.lsp.config('vue_ls', vue_ls_config)
+            vim.lsp.enable({ 'vtsls', 'vue_ls' })
+            -- }}}
 
 
             -- Swift {{{

@@ -40,3 +40,41 @@ port-kill() {
         echo $pid | xargs kill -${1:-9}
     fi
 }
+
+# scrcpy aliases
+punlock() {
+    DEVICES=($(adb devices | awk 'NR>1 && $2=="device"{print $1}'))
+
+    if [ ${#DEVICES[@]} -eq 0 ]; then
+      echo "No wireless ADB device found."
+      exit 1
+    elif [ ${#DEVICES[@]} -eq 1 ]; then
+      DEVICE=${DEVICES[0]}
+    else
+      DEVICE=$(printf '%s\n' "${DEVICES[@]}" | fzf --prompt="Select device: ")
+    fi
+
+    LOCKED=$(adb -s "$DEVICE" shell dumpsys window | grep -E 'mDreamingLockscreen|mShowingLockscreen' | grep true)
+
+    if [ -n "$LOCKED" ]; then
+        read -sp "Phone is locked. PIN: " PIN
+        echo
+        PIN=$(echo "$PIN" | tr -d '[:space:]')
+
+        adb -s "$DEVICE" shell input keyevent 223 # lock
+        adb -s "$DEVICE" shell input keyevent 82 # wake
+
+        adb -s "$DEVICE" shell input text "$PIN"
+        adb -s "$DEVICE" shell input keyevent 66  # enter
+    else
+        echo "Phone is unlocked."
+    fi
+
+    scrcpy \
+      --turn-screen-off \
+      --stay-awake \
+      --keyboard=uhid \
+      --shortcut-mod=lctrl \
+      --screen-off-timeout 86400 \
+      --show-touches
+}

@@ -2,8 +2,9 @@ local wezterm = require('wezterm')
 
 local config = wezterm.config_builder()
 
-config.font = wezterm.font('CaskaydiaCove Nerd Font Mono')
+config.font = wezterm.font('CaskaydiaMono Nerd Font Mono')
 config.font_size = 13
+config.warn_about_missing_glyphs = false
 
 config.color_scheme = 'Gruvbox Dark (Gogh)'
 
