@@ -4,11 +4,11 @@
         "prefix": "vcomp",
         "body": [
             "<script setup lang=\"ts\">",
-            "\t$0",
+            "\t$1",
             "</script>",
             "",
             "<template>",
-            "\t<div>$1</div>",
+            "\t<div></div>",
             "</template>",
             "",
             "<style scoped lang=\"scss\">$2",

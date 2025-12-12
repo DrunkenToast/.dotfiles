@@ -1,2 +1,2 @@
 [core]
-    sshCommand = ssh -i ~/.ssh/id_rsa_work_haystack
+    sshCommand = ssh -i ~/.ssh/haystack/id_rsa
