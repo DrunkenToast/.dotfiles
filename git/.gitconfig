@@ -1,3 +1,7 @@
+# Default to work config for jj
+[user]
+	name = Peter Leconte
+	email = peter.leconte@hatch.be
 [pull]
 	rebase = true
 [include]

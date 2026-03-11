@@ -5,7 +5,8 @@ return {
             { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             { 'nvim-telescope/telescope-dap.nvim' },
-            { 'nvim-telescope/telescope-ui-select.nvim' }
+            { 'nvim-telescope/telescope-ui-select.nvim' },
+            { 'katkodeorg/telescope_worktree.nvim' }
         },
         cmd = "Telescope",
         keys = {

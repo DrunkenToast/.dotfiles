@@ -41,16 +41,38 @@ opt.foldlevel = 999
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
-	opt.foldmethod = "expr"
-	opt.foldexpr = "nvim_treesitter#foldexpr()"
+    opt.foldmethod = "expr"
+    opt.foldexpr = "nvim_treesitter#foldexpr()"
 else
-	opt.foldmethod = "indent"
+    opt.foldmethod = "indent"
 end
 
-if vim.fn.has("nvim-0.10") == 1 then
-	opt.smoothscroll = true
-end
+opt.smoothscroll = true
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
 vim.opt.updatetime = 50
+
+-- trigger `autoread` when files change on disk
+vim.o.autoread = true
+
+local autoread_group = vim.api.nvim_create_augroup("AutoRead", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    group = autoread_group,
+    pattern = "*",
+    callback = function()
+        if vim.fn.mode() ~= "c" then
+            vim.cmd("checktime")
+        end
+    end,
+})
+
+-- notification after file change
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+    group = autoread_group,
+    pattern = "*",
+    callback = function()
+        vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+    end,
+})

@@ -67,3 +67,4 @@ eval "$(rbenv init - --no-rehash zsh)"
 
 # Created by `pipx` on 2025-08-11 09:30:02
 export PATH="$PATH:/Users/peter/.local/bin"
+

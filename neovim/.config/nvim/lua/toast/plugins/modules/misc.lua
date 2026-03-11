@@ -7,7 +7,7 @@ return {
             -- 'f-person/git-blame.nvim',
         },
         event = { 'VimEnter' },
-        config = function()
+        config = function(_, opts)
             -- -- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
             -- local git_blame = require('gitblame').setup({
             --
@@ -23,7 +23,18 @@ return {
                 sections = {
                     lualine_b = { 'filename' },
                     lualine_c = { 'branch', 'diff', 'diagnostics' },
-                    lualine_x = { 'filetype' }
+                    lualine_x = {
+                        'filetype',
+                        function()
+                            local status = require("ollama").status()
+
+                            if status == "IDLE" then
+                                return "💤"
+                            elseif status == "WORKING" then
+                                return "⚡️"
+                            end
+                        end,
+                    }
                 }
             })
         end

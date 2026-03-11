@@ -33,4 +33,4 @@ yabai -m rule --add app="^System Settings$" manage=off
 
 
 # borders 
-borders active_color=0xffb8bb26 inactive_color=0xff363a4f width=5.0 &
+# borders active_color=0xffb8bb26 inactive_color=0xff363a4f width=5.0 &

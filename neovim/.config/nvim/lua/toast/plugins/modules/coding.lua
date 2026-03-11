@@ -119,5 +119,61 @@ return {
                 silent = true
             },
         },
+    },
+
+    -- Trying it out for a bit in a limited fashion but I doubt I'll be a fan of this
+    {
+        "nomnivore/ollama.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+
+        -- All the user commands added by the plugin
+        cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+
+        keys = {
+            -- Note that the <c-u> is important for selections to work properly.
+            {
+                "<leader>or",
+                ":<c-u>lua require('ollama').prompt('Replace_Code')<cr>",
+                desc = "ollama prompt",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>og",
+                ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
+                desc = "ollama Generate Code",
+                mode = { "n", "v" },
+            },
+        },
+        opts = {
+            -- your configuration overrides
+            model = "gpt-oss:20b",
+            url = "http://127.0.0.1:11434",
+            serve = {
+                on_start = false,
+                command = "ollama",
+                args = { "serve" },
+                stop_command = "pkill",
+                stop_args = { "-SIGTERM", "ollama" },
+            },
+            -- View the actual default prompts in ./lua/ollama/prompts.lua
+            prompts = {
+                Replace_Code = {
+                    prompt = "Modify this $ftype code in the following way: $input\n\n"
+                        .. "Respond EXACTLY in this format:\n```$ftype\n<your code>\n```"
+                        .. "\n\n```$ftype\n$sel```",
+                    action = "replace",
+                },
+
+                Generate_Code = {
+                    prompt = "Generate $ftype code that does the following: $input\n\n"
+                        .. "Respond EXACTLY in this format:\n```$ftype\n<your code>\n```",
+                    action = "insert",
+                },
+            }
+        }
     }
+
+
 }

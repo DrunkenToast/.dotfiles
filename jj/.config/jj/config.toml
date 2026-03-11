@@ -1,0 +1,8 @@
+[user]
+name = "Peter Leconte"
+email = "peter.leconte@hatch.be"
+
+[[--scope]]
+--when.repositories = ["~/projects/personal/"]
+[--scope.user]
+email = "peter5leconte@gmail.com"
